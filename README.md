@@ -11,3 +11,8 @@
 - Dual core 3.0+
 - 2/4gb ddr2
 - ssd at least 120gb
+
+## Testing right now
+
+- Ventoy for usb burn -> [Link](https://ventoy.net/en/index.html)
+- Lubuntu
