@@ -9,5 +9,5 @@
 ## Upgrade may needed?
 
 - Dual core 3.0+
-- 4gb ddr2
+- 2/4gb ddr2
 - ssd at least 120gb
