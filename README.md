@@ -10,5 +10,4 @@
 ## Testing right now
 
 - Ventoy for usb burn -> [Link](https://ventoy.net/en/index.html)
-- Lubuntu
-- Hardware listed above
+- Looking for new rams then test all the OS's again
