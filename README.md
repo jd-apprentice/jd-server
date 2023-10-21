@@ -11,6 +11,7 @@
 3. [Utility Links 🔗](#utility-links-)
 4. [OS Details 📰](#os-details-)
 5. [Hardware Details 📰](#hardware-details-)
+6. [Project Track 🛤](#track-)
 
 ## Available hardware 🖥
 
@@ -39,3 +40,7 @@
 ## Hardware Details 📰
 
 - Here is an issue where I write some info about whats happening with the hardware -> [Issue](https://github.com/jd-apprentice/HardwareLearn/issues/2)
+
+## Track 🛤
+
+- Project tracking is being made [Here](https://github.com/users/jd-apprentice/projects/4/views/1)
