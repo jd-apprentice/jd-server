@@ -1,6 +1,6 @@
 # Local Server
 
-![image](https://github.com/jd-apprentice/HardwareLearn/assets/68082746/c32816db-c3ac-4c84-b005-9528c1ac1c0c)
+![image](docs/networking/V1.1.png)
 
 # Table of Contents 🏠
 

@@ -11,3 +11,7 @@ Devices i'm going to buy are
 - Repeaters: Not needed at the moment
 
 ![image](https://github.com/jd-apprentice/HardwareLearn/assets/68082746/bfa4627c-99f2-4767-a9d4-facf768b133e)
+
+New version after taking in consideration some things
+
+![Network](V1.1.png)
