@@ -1,8 +1,6 @@
 # Local Server
 
-<p align="center">
-  <img width="750" height="750" src="https://github.com/jd-apprentice/HardwareLearn/assets/68082746/3e779679-0be3-4bea-a443-ba0a9dfaf73d">
-</p>
+![image](https://github.com/jd-apprentice/HardwareLearn/assets/68082746/c32816db-c3ac-4c84-b005-9528c1ac1c0c)
 
 # Table of Contents 🏠
 
