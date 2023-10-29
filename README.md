@@ -25,20 +25,6 @@
 - Notebook Celeron N4002 2 Cores 4GB DDR4 240GB SSD
 - Notebook R5 5500U 6/12 Cores 8GB DDR4 500GB SSD
 
-## Utility Links 🔗
-
-- Ventoy for burn iso on USB (Works fine on ubuntu 20.4) -> [Link](https://ventoy.net/en/index.html)
-- After downloading Ventoy check this file for more guide in what to do after -> [Script](https://github.com/jd-apprentice/HardwareLearn/blob/main/ventoy.sh)
-- Bodhi Linux download page -> [Here](https://www.bodhilinux.com/download/)
-
-## OS Details 📰
-
-- Here is an issue where I write some information about my process with getting to work the OS -> [Issue](https://github.com/jd-apprentice/HardwareLearn/issues/1)
-
-## Hardware Details 📰
-
-- Here is an issue where I write some info about whats happening with the hardware -> [Issue](https://github.com/jd-apprentice/HardwareLearn/issues/2)
-
 ## Track 🛤
 
 - Project tracking is being made [Here](https://github.com/users/jd-apprentice/projects/4/views/1)
