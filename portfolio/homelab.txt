@@ -1,0 +1,18 @@
+###########
+#JD SERVER#
+###########
+
+Hardware:
+
+- Raspberry Pi Zero 2 W
+- 16GB MicroSD card
+
+Software:
+
+- Raspberry Pi OS Lite
+- Docker
+- Docker Compose
+
+Projects:
+
+- Portfolio

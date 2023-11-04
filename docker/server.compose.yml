@@ -1,0 +1,25 @@
+version: '3.9'
+
+networks:
+  web:
+    external: true
+
+services:
+  cloudflare-tunnel:
+    container_name: cloudflare-tunnel-homelab
+    image: cloudflare/cloudflared:2023.2.1
+    restart: unless-stopped
+    environment:
+      - TUNNEL_TOKEN=$TUNNEL_TOKEN
+    command: tunnel --no-autoupdate run
+    networks:
+      - web
+
+  portfolio:
+    container_name: portfolio-homelab
+    image: dceoy/nginx-autoindex
+    restart: unless-stopped
+    volumes:
+      - ../portfolio:/usr/share/nginx/html:ro
+    networks:
+      - web
