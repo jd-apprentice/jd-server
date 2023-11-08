@@ -1,5 +1,9 @@
 # Local Server
 
+Basic Network Diagram
+![image](docs/networking/Basic_Approach.png)
+
+Complete Network Diagram
 ![image](docs/networking/V1.1.png)
 
 # Table of Contents 🏠

@@ -15,3 +15,7 @@ Devices i'm going to buy are
 New version after taking in consideration some things
 
 ![Network](V1.1.png)
+
+There is a basic approach with cloudflare tunnels that works like this:
+
+![Basic](Basic_Approach.png)
