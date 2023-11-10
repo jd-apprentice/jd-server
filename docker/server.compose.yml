@@ -17,9 +17,13 @@ services:
 
   portfolio:
     container_name: portfolio-homelab
-    image: dceoy/nginx-autoindex
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
-      - ../portfolio:/usr/share/nginx/html:ro
+      - ./data:/app/data
+    ports:
+      - 3500:3500
     networks:
       - web
