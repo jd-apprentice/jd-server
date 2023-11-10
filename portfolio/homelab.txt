@@ -16,3 +16,8 @@ Software:
 Projects:
 
 - Portfolio
+- Pi-Hole
+
+Networking:
+
+- Cloudflare Tunnels
