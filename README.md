@@ -68,7 +68,14 @@ PiHole is a DNS sinkhole that blocks ads on the network level.
 
 ```
 🌳 jd-server/
+┣ 📁 assets/
+┃ ┣ 📄 game.png
+┃ ┣ 📄 page.png
+┃ ┣ 📄 pihole.png
+┃ ┗ 📄 portfolio.png
 ┣ 📁 docker/
+┃ ┣ 📄 arcade.Dockerfile
+┃ ┣ 📄 portfolio.Dockerfile
 ┃ ┗ 📄 server.compose.yml
 ┣ 📁 docs/
 ┃ ┣ 📁 networking/
