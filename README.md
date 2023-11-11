@@ -15,10 +15,8 @@ Complete Network Diagram
     - [PiHole 🕳](#pihole-)
 - [Available Hardware 🖥](#available-hardware-)
 - [Random stuff 🎉](#random-stuff-)
-- [Utility Links 🔗](#utility-links-)
-- [OS Details 📰](#os-details-)
-- [Hardware Details 📰](#hardware-details-)
 - [Project Track 🛤](#track-)
+- [Folder Structure 📁](#folder-structure-)
 
 ## Demos 📺
 
@@ -65,6 +63,8 @@ PiHole is a DNS sinkhole that blocks ads on the network level.
 ## Track 🛤
 
 - Project tracking is being made [Here](https://github.com/users/jd-apprentice/projects/4/views/1)
+
+## Folder structure 📁
 
 ```
 🌳 jd-server/
