@@ -8,17 +8,17 @@ Complete Network Diagram
 
 # Table of Contents 🏠
 
-- [Demos 📺](#demos-📺)
-    - [Portfolio 📄](#portfolio-📄)
-    - [Arcade 🕹](#arcade-🕹)
-        - [Gameplay 🕹](#gameplay-🕹)
-    - [PiHole 🕳](#pihole-🕳)
-- [Available Hardware 🖥](#available-hardware-🖥)
-- [Random stuff 🎉](#random-stuff-🎉)
-- [Utility Links 🔗](#utility-links-🔗)
-- [OS Details 📰](#os-details-📰)
-- [Hardware Details 📰](#hardware-details-📰)
-- [Project Track 🛤](#track-🛤)
+- [Demos 📺](#demos-)
+    - [Portfolio 📄](#portfolio-)
+    - [Arcade 🕹](#arcade-)
+        - [Gameplay 🕹](#gameplay-)
+    - [PiHole 🕳](#pihole-)
+- [Available Hardware 🖥](#available-hardware-)
+- [Random stuff 🎉](#random-stuff-)
+- [Utility Links 🔗](#utility-links-)
+- [OS Details 📰](#os-details-)
+- [Hardware Details 📰](#hardware-details-)
+- [Project Track 🛤](#track-)
 
 ## Demos 📺
 
