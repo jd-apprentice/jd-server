@@ -46,3 +46,16 @@ services:
       - 3500:3500
     networks:
       - web
+
+  arcade:
+    container_name: arcade-homelab
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./page:/app/page
+    ports:
+      - 3000:3000
+    networks:
+      - web
