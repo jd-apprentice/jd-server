@@ -41,7 +41,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
-      - ./data:/app/data
+      - ./data:/app/data # Add files here to be served
     ports:
       - 3500:3500
     networks:
@@ -54,7 +54,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
-      - ./page:/app/page
+      - ./page:/app/page # the actual application
     ports:
       - 3000:3000
     networks:
