@@ -8,13 +8,17 @@ Complete Network Diagram
 
 # Table of Contents 🏠
 
-0. [Demos 📺](#demos-📺)
-1. [Available Hardware 🖥](#available-hardware-🖥)
-2. [Random stuff 🎉](#random-stuff-🎉)
-3. [Utility Links 🔗](#utility-links-🔗)
-4. [OS Details 📰](#os-details-📰)
-5. [Hardware Details 📰](#hardware-details-📰)
-6. [Project Track 🛤](#track-🛤)
+- [Demos 📺](#demos-📺)
+    - [Portfolio 📄](#portfolio-📄)
+    - [Arcade 🕹](#arcade-🕹)
+        - [Gameplay 🕹](#gameplay-🕹)
+    - [PiHole 🕳](#pihole-🕳)
+- [Available Hardware 🖥](#available-hardware-🖥)
+- [Random stuff 🎉](#random-stuff-🎉)
+- [Utility Links 🔗](#utility-links-🔗)
+- [OS Details 📰](#os-details-📰)
+- [Hardware Details 📰](#hardware-details-📰)
+- [Project Track 🛤](#track-🛤)
 
 ## Demos 📺
 
@@ -32,6 +36,10 @@ For the game itself this is the repo [arcade](https://github.com/jd-apprentice/-
 
 ![page](assets/page.png)
 ![game](assets/game.png)
+
+### Gameplay 🕹
+
+https://github.com/jd-apprentice/jd-server/assets/68082746/00fbb0d2-e05d-4913-b20a-b2d3f0a9e939
 
 ### PiHole 🕳
 
