@@ -45,6 +45,12 @@ PiHole is a DNS sinkhole that blocks ads on the network level.
 
 ![pihole](assets/pihole.png)
 
+### IRC Client 💬
+
+Thelounge is a IRC client for the web
+
+![image](https://github.com/jd-apprentice/jd-server/assets/68082746/9a05ba5d-1e48-4839-98cc-d55ac4724955)
+
 ## Available hardware 🖥
 
 - 240GB SSD
