@@ -13,6 +13,7 @@ Complete Network Diagram
     - [Arcade 🕹](#arcade-)
         - [Gameplay 🕹](#gameplay-)
     - [PiHole 🕳](#pihole-)
+    - [TheLounge 💬](#irc-client-)
 - [Available Hardware 🖥](#available-hardware-)
 - [Random stuff 🎉](#random-stuff-)
 - [Project Track 🛤](#track-)
