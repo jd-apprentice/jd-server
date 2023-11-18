@@ -52,6 +52,12 @@ Thelounge is a IRC client for the web
 
 ![image](https://github.com/jd-apprentice/jd-server/assets/68082746/9a05ba5d-1e48-4839-98cc-d55ac4724955)
 
+### Status Page 🗽
+
+Uptime kuma for status in my own services
+
+![image](https://github.com/jd-apprentice/jd-server/assets/68082746/9a557680-2af8-4c28-8a5a-27d886d9b1c0)
+
 ## Available hardware 🖥
 
 - 240GB SSD
