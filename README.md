@@ -14,6 +14,7 @@ Complete Network Diagram
         - [Gameplay 🕹](#gameplay-)
     - [PiHole 🕳](#pihole-)
     - [TheLounge 💬](#irc-client-)
+    - [Status Page 🗽](#status-page-)
 - [Available Hardware 🖥](#available-hardware-)
 - [Random stuff 🎉](#random-stuff-)
 - [Project Track 🛤](#track-)
