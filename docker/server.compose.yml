@@ -68,3 +68,10 @@ services:
     volumes:
       - ~/.thelounge:/var/opt/thelounge
     restart: unless-stopped
+
+  gossa:
+    image: pldubouilh/gossa
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./data:/shared
