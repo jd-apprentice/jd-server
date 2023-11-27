@@ -34,6 +34,7 @@ services:
       - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
     restart: unless-stopped
 
+  # docker run -d -v ./data:/shared:ro -p 3500:3500 pldubouilh/gossa
   portfolio:
     container_name: portfolio-homelab
     build:
