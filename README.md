@@ -59,6 +59,13 @@ Uptime kuma for status in my own services
 
 ![image](https://github.com/jd-apprentice/jd-server/assets/68082746/9a557680-2af8-4c28-8a5a-27d886d9b1c0)
 
+## Shared Server 📡
+
+This is a folder that can be written in the webserver, for personal usage with friends, it has one time pin with cloudflare before the user can access the folder.
+
+![zero trust](/assets/zero_trust.png)
+![shared](/assets/shared.png)
+
 ## Available hardware 🖥
 
 - 240GB SSD
