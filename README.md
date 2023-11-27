@@ -15,6 +15,7 @@ Complete Network Diagram
     - [PiHole 🕳](#pihole-)
     - [TheLounge 💬](#irc-client-)
     - [Status Page 🗽](#status-page-)
+    - [Shared Server 📡](#shared-server-)
 - [Available Hardware 🖥](#available-hardware-)
 - [Random stuff 🎉](#random-stuff-)
 - [Project Track 🛤](#track-)
@@ -59,7 +60,7 @@ Uptime kuma for status in my own services
 
 ![image](https://github.com/jd-apprentice/jd-server/assets/68082746/9a557680-2af8-4c28-8a5a-27d886d9b1c0)
 
-## Shared Server 📡
+### Shared Server 📡
 
 This is a folder that can be written in the webserver, for personal usage with friends, it has one time pin with cloudflare before the user can access the folder.
 
