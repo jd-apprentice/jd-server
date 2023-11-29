@@ -16,6 +16,7 @@ Complete Network Diagram
     - [TheLounge 💬](#irc-client-)
     - [Status Page 🗽](#status-page-)
     - [Shared Server 📡](#shared-server-)
+    - [Backup 📦](#backup-)
 - [Available Hardware 🖥](#available-hardware-)
 - [Random stuff 🎉](#random-stuff-)
 - [Project Track 🛤](#track-)
@@ -66,6 +67,12 @@ This is a folder that can be written in the webserver, for personal usage with f
 
 ![zero trust](/assets/zero_trust.png)
 ![shared](/assets/shared.png)
+
+### Backup 📦
+
+Backup system that runs a cronjob, it backups the server to telegram once a week.
+
+![backup](/assets/backup.png)
 
 ## Available hardware 🖥
 
