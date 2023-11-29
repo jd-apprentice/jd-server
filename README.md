@@ -8,6 +8,8 @@ Complete Network Diagram
 
 # Table of Contents 🏠
 
+- [Cloudflare 🌩](#cloudflare-)
+    - [Zero Trust 🌐](#zero-trust-)
 - [Demos 📺](#demos-)
     - [Portfolio 📄](#portfolio-)
     - [Arcade 🕹](#arcade-)
@@ -16,11 +18,39 @@ Complete Network Diagram
     - [TheLounge 💬](#irc-client-)
     - [Status Page 🗽](#status-page-)
     - [Shared Server 📡](#shared-server-)
+    - [Terminal Web SSH 🌐](#terminal-web-ssh-)
     - [Backup 📦](#backup-)
 - [Available Hardware 🖥](#available-hardware-)
 - [Random stuff 🎉](#random-stuff-)
 - [Project Track 🛤](#track-)
 - [Folder Structure 📁](#folder-structure-)
+
+## Cloudflare 🌩
+
+![Alt text](/docs/cloudflare/cloudflare.png)
+
+Here is some of the services that I use from cloudflare
+
+- [Zero Trust](https://www.cloudflare.com/zerotrust/)
+- [DNS](https://www.cloudflare.com/dns/)
+- [Email](https://www.cloudflare.com/developer-platform/email-routing/)
+
+### Zero Trust 🌐
+
+Zero Trust is a security model that requires strict identity verification for every person and device trying to access resources on a private network, regardless of whether they are sitting within or outside of the network perimeter.
+
+![apps](/assets/cloudflare/apps.png)
+![app_policies](/assets/cloudflare/apps_policies.png)
+![tunnels](/assets/cloudflare/tunnels.png)
+![L7](/assets/cloudflare/L7.png)
+
+Under settings what I have changed?
+
+| Option | Section | Value | Default |
+| --- | --- | --- | --- |
+| Settings | Networking | Firewall Proxy | Off |
+| Settings | Authentication | One-Time Pin | Not Set |
+| Settings | Warp Client | Warp Client Checks | Not Set |
 
 ## Demos 📺
 
@@ -68,6 +98,13 @@ This is a folder that can be written in the webserver, for personal usage with f
 ![zero trust](/assets/zero_trust.png)
 ![shared](/assets/shared.png)
 
+### Terminal Web SSH 🌐
+
+Terminal web ssh is a web ssh client that can be used to access the server from the browser.
+It is protected and only devices conected from WARP can access it, also it contains a one time pin.
+
+![ssh](/assets/ssh.png)
+
 ### Backup 📦
 
 Backup system that runs a cronjob, it backups the server to telegram once a week.
@@ -78,7 +115,7 @@ Backup system that runs a cronjob, it backups the server to telegram once a week
 
 - 240GB SSD
 - 500 Watts Generic PSU
-- 2GB DDR3
+- Untested 2GB DDR3
 - Untested A8 7650K
 - Untested 500GB HDD
 
