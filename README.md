@@ -105,11 +105,12 @@ It is protected and only devices conected from WARP can access it, also it conta
 
 ![ssh](/assets/ssh.png)
 
-### Backup 📦
+### Backup 📦 && Alerts 🚨
 
-Backup system that runs a cronjob, it backups the server to telegram once a week.
+Mannually backup the server with a cronjob and bash.
+Alerts for the cloudflare tunnel with a cronjob as well.
 
-![backup](/assets/backup.png)
+![alert](/assets/alert.png)
 
 ## Available hardware 🖥
 
