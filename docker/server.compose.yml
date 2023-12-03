@@ -92,6 +92,20 @@ services:
       - "/:/host:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
     restart: unless-stopped
+  
+  pocketbase:
+    build:
+      context: .
+      dockerfile: pocketbase.Dockerfile
+    restart: unless-stopped
+    command: serve
+    ports:
+      - 8090:8090
+    volumes:
+      - pocketbase-data:/pb_data
+    networks:
+      network:
+        ipv4_address: 10.5.0.7
 
 networks:
   network:
