@@ -36,17 +36,15 @@ services:
 
   # docker run -d -v ./data:/shared:ro -p 3500:3500 pldubouilh/gossa
   portfolio:
-    container_name: portfolio-homelab
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    volumes:
-      - ./data:/app/data # Add files here to be served
+    image: pldubouilh/gossa
     ports:
-      - 3500:3500
+      - "3500:3500"
+    volumes:
+      - ./data:/shared:ro
+    command: ./gossa -ro -p 3500
     networks:
-      - web
+     network:
+       ipv4_address: 10.5.0.6
 
   arcade:
     container_name: arcade-homelab
@@ -79,6 +77,21 @@ services:
     networks:
      network:
        ipv4_address: 10.5.0.5
+  
+  agent:
+    container_name: newrelic-infra
+    build:
+      context: .
+      dockerfile: newrelic-infra.Dockerfile
+    cap_add:
+      - SYS_PTRACE
+    network_mode: host
+    pid: host
+    privileged: true
+    volumes:
+      - "/:/host:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    restart: unless-stopped
 
 networks:
   network:

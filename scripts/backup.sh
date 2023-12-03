@@ -1,5 +1,7 @@
 #!/bin/bash
 # Usage 'backup directory/*'
+# 0 3 * * 1 backup $HOME/www/*
+# alias backup='sh $HOME/scripts/backup.sh'
 
 TOKEN=""
 CHAT_ID=""

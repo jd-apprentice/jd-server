@@ -1,4 +1,6 @@
 #!/bin/bash
+# 0 * * * * alerts
+# alias alerts='sh $HOME/scripts/alerts.sh'
 
 TOKEN=""
 CHAT_ID=""
