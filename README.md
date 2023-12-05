@@ -114,6 +114,9 @@ Alerts for the cloudflare tunnel with a cronjob as well.
 
 ## Available hardware 🖥
 
+- Raspberry Pi Zero 2 W
+- TV Box 4 Cores (ARM) 2GB RAM 16GB MicroSD
+
 - 240GB SSD
 - 500 Watts Generic PSU
 - Untested 2GB DDR3
@@ -122,10 +125,8 @@ Alerts for the cloudflare tunnel with a cronjob as well.
 
 #### Random stuff 🎉
 
-- TV Box 4 Cores (ARM) 2GB RAM 16GB MicroSD
 - Notebook Celeron N4002 2 Cores 4GB DDR4 240GB SSD
 - Notebook R5 5500U 6/12 Cores 8GB DDR4 500GB SSD
-- Raspberry Pi Zero 2 W
 
 ## Track 🛤
 
