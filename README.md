@@ -19,6 +19,7 @@ Complete Network Diagram
     - [Status Page 🗽](#status-page-)
     - [Shared Server 📡](#shared-server-)
     - [Terminal Web SSH 🌐](#terminal-web-ssh-)
+    - [Docker Logs 📜](#docker-logs-)
     - [Backup 📦](#backup-)
 - [Available Hardware 🖥](#available-hardware-)
 - [Random stuff 🎉](#random-stuff-)
@@ -105,17 +106,29 @@ It is protected and only devices conected from WARP can access it, also it conta
 
 ![ssh](/assets/ssh.png)
 
-### Backup 📦 && Alerts 🚨
+### Docker Logs 📜
+
+Since i'm running everything inside containers, I'll use Dozzle to see the logs of the containers.
+
+![logs](/assets/dozzle.png)
+
+### Backup 📦 Alerts 🚨 Monitoring 📊
 
 Mannually backup the server with a cronjob and bash.
 Alerts for the cloudflare tunnel with a cronjob as well.
+Monitor cpu, ram, disk usage with a cronjob too.
+
+Cron jobs are under /etc/cron.<time>
 
 ![alert](/assets/alert.png)
 
 ## Available hardware 🖥
 
 - Raspberry Pi Zero 2 W
-- TV Box 4 Cores (ARM) 2GB RAM 16GB MicroSD
+    - 4 Cores (ARMV7) 512MB RAM 16GB MicroSD
+
+- TV Box 4 Cores (ARM) 2GB RAM
+    - 16GB MicroSD
 
 - 240GB SSD
 - 500 Watts Generic PSU
