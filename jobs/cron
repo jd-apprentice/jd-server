@@ -1,0 +1,11 @@
+MAILTO=contacto@jonathan.com.ar
+0 3 * * 1 apt-get autoremove -y && apt-get clean
+
+MAILTO=contacto@jonathan.com.ar
+0 * * * * alerts &>/logs/alert.log
+
+MAILTO=contacto@jonathan.com.ar
+0 3 * * 1 backup $HOME/www/* &>/logs/backup.log
+
+MAILTO=contacto@jonathan.com.ar
+0 * * * * usage &>/logs/usage.log
