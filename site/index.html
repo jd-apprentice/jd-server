@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Alpine.js + Tailwindcss</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body x-data="{ 
+        showAbout: false, 
+        showSkills: false, 
+        showProjects: false, 
+        projects: ['dbn-tools', 'docker-armhf', 'easy-static', 'dotfiles', 'jd-server', 'jd-infra'], 
+        colorClasses: ['green-500', 'blue-500', 'purple-500', 'yellow-500', 'indigo-500', 'red-500', 'gray-500'], 
+        skills: ['Linux', 'Security', 'Networking', 'Automation', 'DevOps', 'SysOps', 'Scripting', 'Docker', 'Python', 'Bash'] 
+    }" class="min-h-screen flex items-center justify-center bg-gray-200">
+
+    <main class="container bg-white p-8 rounded shadow-md">
+        <section>
+            <img src="https://avatars.githubusercontent.com/u/68082746?s=400&u=91d9f39e5c3715d8b3ef4bce134a346bbbe95150&v=4"
+                alt="pfp" class="profile-img mx-auto mb-4 rounded-full">
+            <h1 class="text-2xl font-bold text-center">Jonathan Dyallo</h1>
+            <p class="text-center">SysOps - DevOps</p>
+        </section>
+
+        <section class="flex justify-center">
+            <button @click="showAbout = true" class="mt-4 mx-2 px-4 py-2 bg-gray-800 text-white rounded">about
+                me
+            </button>
+            <button @click="showSkills = true" class="mt-4 mx-2 px-4 py-2 bg-gray-800 text-white rounded">
+                skills
+            </button>
+            <button @click="showProjects = true" class="mt-4 mx-2 px-4 py-2 bg-gray-800 text-white rounded">
+                projects
+            </button>
+            <button class="mt-4 mx-2 px-4 py-2 bg-gray-800 text-white rounded">
+                <a href="mailto:contacto@jonathan.com.ar" class="btn btn-secondary mt-4">contact</a>
+            </button>
+        </section>
+
+        <section x-show="showAbout" @click.away="showAbout = false" class="mt-4">
+            <h2 class="text-xl font-bold">bio</h2>
+            <p class="text-gray-700">
+                From La Plata, Argentina. In the field of infraestructure and finance, building day by day useful and
+                interesting things either for fun and professionally. I am currently working with devops culture.
+                Fanatic of linux, finance, chess and anime. 🎮📈♟️
+            </p>
+        </section>
+
+        <section x-show="showSkills" @click.away="showSkills = false" class="mt-4">
+            <h2 class="text-xl font-bold">Technical Skills</h2>
+            <div class="flex flex-wrap mt-3">
+                <template x-for="(skill, index) in skills" :key="skill">
+                    <span
+                        :class="['bg-' + colorClasses[index % colorClasses.length], 'text-white', 'py-1', 'px-2', 'mb-2', 'mr-2']"
+                        x-text="skill"></span>
+                </template>
+            </div>
+        </section>
+
+        <section x-show="showProjects" @click.away="showProjects = false" class="mt-4">
+            <h2 class="text-xl font-bold">Projects</h2>
+            <div class="flex flex-wrap mt-3">
+                <template x-for="(project, index) in projects" :key="project">
+                    <a target="_blank" :href="['https://github.com/jd-apprentice/' + project]"
+                        :class="['bg-' + colorClasses[index % colorClasses.length], 'text-white', 'py-1', 'px-2', 'mb-2', 'mr-2']"
+                        x-text="project">
+                    </a>
+                </template>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
