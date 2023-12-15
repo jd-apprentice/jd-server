@@ -2,10 +2,24 @@ MAILTO=contacto@jonathan.com.ar
 0 3 * * 1 apt-get autoremove -y && apt-get clean
 
 MAILTO=contacto@jonathan.com.ar
-0 * * * * alerts &>/logs/alert.log
+0 * * * * alerts &>$HOME/logs/alert.log
 
 MAILTO=contacto@jonathan.com.ar
-0 3 * * 1 backup $HOME/www/* &>/logs/backup.log
+0 3 * * 1 backup $HOME/www/* &>$HOME/logs/backup.log
 
 MAILTO=contacto@jonathan.com.ar
-0 * * * * usage &>/logs/usage.log
+0 * * * * usage &>$HOME/logs/usage.log
+
+-----
+
+MAILTO=contacto@jonathan.com.ar
+0 3 * * 1 apt-get autoremove -y && apt-get clean
+
+MAILTO=contacto@jonathan.com.ar
+0 * * * * bash -c "source .bashrc && alerts &>$HOME/logs/alert.log"
+
+MAILTO=contacto@jonathan.com.ar
+0 3 * * 1 bash -c "source .bashrc && backup $HOME/www/* &>$HOME/logs/backup.log"
+
+MAILTO=contacto@jonathan.com.ar
+0 * * * * bash -c "source .bashrc && usage &>$HOME/logs/usage.log"
