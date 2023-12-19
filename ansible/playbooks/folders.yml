@@ -1,0 +1,48 @@
+---
+- name: create files and folders
+  hosts: raspberry
+  gather_facts: false
+  tasks:
+    - name: create multiple folders
+      file:
+        path: "$HOME/{{ item }}"
+        state: directory
+        mode: 0755
+      with_items:
+        - logs
+        - scripts
+        - www
+
+    - name: copy scripts
+      copy:
+        src: "../scripts/{{ item }}"
+        dest: "$HOME/scripts/{{ item }}"
+        mode: 0755
+      with_items:
+        - alerts.sh
+        - backup.sh
+        - usage.sh
+
+    - name: copy compose files
+      copy:
+        src: "../docker/{{ item }}"
+        dest: "$HOME/www/{{ item }}"
+        mode: 0755
+      with_items:
+        - pihole.compose.yml
+        - portfolio.compose.yml
+        - shared.compose.yml
+        - status.compose.yml
+        - homepage.compose.yml
+        - logs.compose.yml
+
+    - name: copy folders
+      copy:
+        src: "../docker/{{ item }}"
+        dest: "$HOME/www/{{ item }}"
+        mode: 0755
+        directory_mode: 0755
+      with_items:
+        - links
+        - portfolio
+        - shared

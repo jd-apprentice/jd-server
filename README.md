@@ -12,6 +12,7 @@ Complete Network Diagram
     - [Zero Trust 🌐](#zero-trust-)
 - [Demos 📺](#demos-)
     - [Portfolio 📄](#portfolio-)
+    - [Links 🔗](#links-)
     - [Arcade 🕹](#arcade-)
         - [Gameplay 🕹](#gameplay-)
     - [PiHole 🕳](#pihole-)
@@ -28,7 +29,7 @@ Complete Network Diagram
 
 ## Cloudflare 🌩
 
-![Alt text](/docs/cloudflare/cloudflare.png)
+![cloudflare](/docs/cloudflare/cloudflare.png)
 
 Here is some of the services that I use from cloudflare
 
@@ -60,6 +61,12 @@ Under settings what I have changed?
 A simple portfolio made with http-server, like nginx autoindex but made with nodejs.
 
 ![portfolio](assets/portfolio.png)
+
+### Links 🔗
+
+Website that contains all the links to my services and social media.
+
+![links](/assets/link.png)
 
 ### Arcade 🕹
 

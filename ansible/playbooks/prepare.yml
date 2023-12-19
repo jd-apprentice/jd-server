@@ -1,0 +1,20 @@
+- name: Update system and install packages
+  hosts: raspberry
+  become_user: root
+  become: yes
+  tasks:
+    - name: Run apt-get update
+      become: yes
+      apt: update_cache=yes
+    
+    - name: Run apt-get upgrade
+      become: yes
+      apt: upgrade=dist
+
+    - name: Run autoclean
+      become: yes
+      apt: autoclean=yes
+      
+    - name: Run autoremove
+      become: yes
+      apt: autoremove=yes
