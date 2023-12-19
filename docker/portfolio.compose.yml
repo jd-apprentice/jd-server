@@ -1,0 +1,22 @@
+version: '3.8'
+
+# docker run -d -v ./data:/shared:ro -p 3500:3500 pldubouilh/gossa
+services:
+  portfolio:
+    image: pldubouilh/gossa
+    ports:
+      - "3500:3500"
+    volumes:
+      - ./portfolio/data:/shared:ro
+    command: ./gossa -ro -p 3500
+    networks:
+     network:
+       ipv4_address: 10.5.0.6
+
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1

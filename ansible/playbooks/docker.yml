@@ -1,0 +1,21 @@
+---
+- name: install docker
+  hosts: raspberry
+  become: yes
+
+  tasks:
+    - name: Run apt-get update
+      become: yes
+      apt: update_cache=yes
+    
+    - name: Install curl
+      become: yes
+      apt: name=curl state=present
+
+    - name: Run curl command
+      become: yes
+      shell: curl -fsSL test.docker.com -o get-docker.sh && sh get-docker.sh
+
+    - name: Add user to docker group
+      become: yes
+      shell: usermod -aG docker $USER
