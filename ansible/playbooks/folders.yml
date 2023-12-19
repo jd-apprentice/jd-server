@@ -7,6 +7,8 @@
       file:
         path: "$HOME/{{ item }}"
         state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
         mode: 0755
       with_items:
         - logs
@@ -17,6 +19,8 @@
       copy:
         src: "../scripts/{{ item }}"
         dest: "$HOME/scripts/{{ item }}"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
         mode: 0755
       with_items:
         - alerts.sh
@@ -27,6 +31,8 @@
       copy:
         src: "../docker/{{ item }}"
         dest: "$HOME/www/{{ item }}"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
         mode: 0755
       with_items:
         - pihole.compose.yml
@@ -40,6 +46,8 @@
       copy:
         src: "../docker/{{ item }}"
         dest: "$HOME/www/{{ item }}"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
         mode: 0755
         directory_mode: 0755
       with_items:
