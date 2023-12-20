@@ -16,3 +16,5 @@ fi
 echo "🚨 Error found"
 
 curl -X POST -H "content-type: application/json" -d "{\"chat_id\": \"$CHAT_ID\", \"text\": \"🚨 Error: $monitor\", \"disable_notification\": true}" https://api.telegram.org/bot$TOKEN/sendMessage
+
+sqlite3 $HOME/db/logs.db "INSERT INTO logs (date, log) VALUES (datetime('now'), '$monitor');"
