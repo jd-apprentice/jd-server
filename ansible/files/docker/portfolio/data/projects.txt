@@ -1,0 +1,15 @@
+###########
+#EVENTITOS#
+###########
+
+[platform]
+Web
+
+[stack]
+Svelte - Typescript - Vercel - Turso - TailwindCSS - MeltUI - SuperForm - DrizzleORM - LuciaAuth
+
+[description]
+Share and find local events easily, no registration required
+
+[webpage]
+https://eventitos.com.ar/

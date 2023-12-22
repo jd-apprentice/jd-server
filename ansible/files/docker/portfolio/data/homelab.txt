@@ -1,0 +1,34 @@
+###########
+#JD SERVER#
+###########
+
+Hardware:
+
+- Raspberry Pi Zero 2 W
+- 16GB MicroSD card
+
+Software:
+
+- Raspberry Pi OS Lite
+- Docker
+- Docker Compose
+
+Projects:
+
+- Portfolio
+- Pi-Hole
+- Arcade Web
+- File Share
+- Uptime Kuma
+- SSH Web Terminal
+- Container Logs
+- Backup Service
+- Alerts Service
+- Usage Service
+
+Networking:
+
+- Cloudflare Tunnels
+- Cloudflare Zero Trust
+- Cloudflare Warp
+- Cloudflare WAF

@@ -1,6 +1,7 @@
 ---
 - name: create files and folders
   hosts: raspberry
+  become_user: dyallo
   gather_facts: false
   tasks:
     - name: create multiple folders
@@ -17,40 +18,16 @@
 
     - name: copy scripts
       copy:
-        src: "../scripts/{{ item }}"
-        dest: "$HOME/scripts/{{ item }}"
+        src: "../files/scripts"
+        dest: "$HOME/scripts"
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
-        mode: 0755
-      with_items:
-        - alerts.sh
-        - backup.sh
-        - usage.sh
+        mode: '0755'
 
-    - name: copy compose files
+    - name: copy docker
       copy:
-        src: "../docker/{{ item }}"
-        dest: "$HOME/www/{{ item }}"
+        src: "../files/docker"
+        dest: "$HOME/www/"
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
         mode: 0755
-      with_items:
-        - pihole.compose.yml
-        - portfolio.compose.yml
-        - shared.compose.yml
-        - status.compose.yml
-        - homepage.compose.yml
-        - logs.compose.yml
-
-    - name: copy folders
-      copy:
-        src: "../docker/{{ item }}"
-        dest: "$HOME/www/{{ item }}"
-        owner: "{{ ansible_user }}"
-        group: "{{ ansible_user }}"
-        mode: 0755
-        directory_mode: 0755
-      with_items:
-        - links
-        - portfolio
-        - shared
