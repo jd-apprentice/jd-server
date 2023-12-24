@@ -5,7 +5,7 @@
 Hardware:
 
 - Raspberry Pi Zero 2 W
-- 16GB MicroSD card
+- 64GB MicroSD card
 
 Software:
 
