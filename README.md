@@ -8,6 +8,7 @@ Complete Network Diagram
 
 # Table of Contents 🏠
 
+- [Blogs 📖](#blogs-)
 - [Cloudflare 🌩](#cloudflare-)
     - [Zero Trust 🌐](#zero-trust-)
 - [Demos 📺](#demos-)
@@ -26,6 +27,11 @@ Complete Network Diagram
 - [Random stuff 🎉](#random-stuff-)
 - [Project Track 🛤](#track-)
 - [Folder Structure 📁](#folder-structure-)
+
+## Blogs 📖
+
+- Build your own homelab [here](https://blog.jonathan.com.ar/build-your-own-homelab-with-a-raspberry-pi-zero-2-w-and-cloudflare-zero-trust)
+- Use SSH on the web [here](https://blog.jonathan.com.ar/access-your-homelab-with-ssh-from-the-browser-with-cloudflare)
 
 ## Cloudflare 🌩
 
