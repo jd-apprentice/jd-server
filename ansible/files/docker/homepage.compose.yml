@@ -3,6 +3,8 @@ services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
+    mem_limit: 50m
+    memswap_limit: 100m
     ports:
       - 4000:3000
     volumes:

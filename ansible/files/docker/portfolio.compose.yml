@@ -4,6 +4,8 @@ version: '3.8'
 services:
   portfolio:
     image: pldubouilh/gossa
+    mem_limit: 50m
+    memswap_limit: 100m
     ports:
       - "3500:3500"
     volumes:

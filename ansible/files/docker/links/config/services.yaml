@@ -2,9 +2,6 @@
     - Portfolio:
         href: https://jonathan.com.ar
         description: My personal portfolio
-    - Status:
-        href: https://status.jonathan.com.ar
-        description: Status page for my services
     - Adbloker:
         href: https://pihole.jonathan.com.ar/admin
         description: Pihole for my house
@@ -17,6 +14,9 @@
     - Logs:
         href: https://logs.jonathan.com.ar
         description: Docker container logs
+    - Gists:
+        href: https://gist.jonathan.com.ar
+        description: My personal gist server
 
 - External:
     - Blog:
@@ -34,6 +34,6 @@
     - Email:
         href: mailto:contacto@jonathan.com.ar
         description: Contact me!
-    - Books:
-        href: https://www.goodreads.com/photo/user/169488725-jonathan
-        description: My reading list
+    - Status:
+        href: https://dyallab.openstatus.dev/
+        description: Status of my public services
