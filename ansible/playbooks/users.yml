@@ -1,0 +1,16 @@
+---
+- name: Create user
+  hosts: raspberry
+  become: yes
+
+  tasks:
+    - name: Create users for bondiola group
+      user:
+        name: "{{ item }}"
+        group: bondiola
+        shell: /bin/bash
+        home: /share/{{ item }}
+        createhome: yes
+        state: present
+      with_items: 
+        - bondiola_user

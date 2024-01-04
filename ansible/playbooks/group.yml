@@ -1,0 +1,9 @@
+---
+- name: Create users with root directory /share
+  hosts: raspberry
+  become: yes
+
+  - name: Create group bondiola
+    group:
+      name: bondiola
+      state: present

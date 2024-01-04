@@ -1,0 +1,22 @@
+---
+- name: Create users with root directory /share
+  hosts: raspberry
+  become: yes
+
+  tasks:
+    - name: Add configuration to sshd_config
+      blockinfile:
+        path: /etc/ssh/sshd_config
+        block: |
+          # 
+          Match Group bondiola
+            ChrootDirectory /share
+            PasswordAuthentication yes
+          #
+        marker: "# {mark} CONF ANSIBLE"
+
+  handlers:
+    - name: restart ssh
+      service:
+        name: ssh
+        state: restarted
