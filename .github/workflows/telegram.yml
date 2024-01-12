@@ -10,6 +10,10 @@ jobs:
   runs-on: ubuntu-latest
   name: Send Telegram Message
   steps:
+
+    - name: Checkout
+      uses: actions/checkout@v4
+
     - name: Send Inline Telegram Message
       uses: cbrgm/telegram-github-action@v1.0
       with:
