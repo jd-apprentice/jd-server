@@ -62,5 +62,9 @@ jobs:
     needs: codacy-security-scan
     runs-on: ubuntu-latest
     steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Notify
         uses: ./.github/workflows/template/telegram.yml
