@@ -68,3 +68,6 @@ jobs:
 
       - name: Notify
         uses: ./.github/workflows/telegram.yml
+        with:
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
