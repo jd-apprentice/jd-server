@@ -1,11 +1,14 @@
 ## https://github.com/marketplace/actions/shellcheck
 
+name: Linter
+
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
     paths:
-      - "ansible/files/scripts/*"
+      - "**.sh"
 
 name: Linter
 permissions: read
