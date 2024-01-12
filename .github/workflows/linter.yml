@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-  paths:
-    - "ansible/files/scripts/*"
+    paths:
+      - "ansible/files/scripts/*"
 
 name: Linter
 permissions: read
