@@ -25,9 +25,3 @@ jobs:
           target: 'https://jonathan.com.ar'
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
-
-      - name: Notify
-        uses: ./.github/workflows/telegram.yml
-        with:
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
