@@ -19,3 +19,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
+  
+  telegram:
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify
+        uses: ./.github/workflows/template/telegram.yml

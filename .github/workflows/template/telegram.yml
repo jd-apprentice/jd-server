@@ -1,0 +1,35 @@
+name: Send Telegram Message
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  telegram_message:
+  runs-on: ubuntu-latest
+  name: Send Telegram Message
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Send Inline Telegram Message
+      uses: cbrgm/telegram-github-action@v1.0
+      with:
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        message: |
+          🚀 **New commit by ${{ github.actor }}!**
+
+          **Commit:** ${{ github.event.head_commit.message }}
+          **Repository:** ${{ github.repository }}
+          **View changes:** [GitHub Commit](${{ github.event.head_commit.url }})
+
+          📎 **Commit Details:**
+          - Author: ${{ github.event.head_commit.author.name }}
+          - Email: ${{ github.event.head_commit.author.email }}
+          - Date: ${{ github.event.head_commit.timestamp }}
+
+          🌐 **Repository Details:**
+          - Branch: ${{ github.ref }}
+          - SHA: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
