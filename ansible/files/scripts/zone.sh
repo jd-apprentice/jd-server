@@ -38,6 +38,6 @@ curl --request GET \
   --header "X-Auth-Email: $EMAIL" \
   --header "X-Auth-Key: $AUTH_KEY" > zone.txt
 
-curl -X POST -H "content-type: application/json" -d "{\"chat_id\": \"$CHAT_ID\", \"text\": \"Date: $date\nDescription: $description\", \"disable_notification\": true}" https://api.telegram.org/bot$TOKEN/sendMessage
-curl -X POST -H "content-type: multipart/form-data" -F document=@"zone.txt" -F chat_id=$CHAT_ID https://api.telegram.org/bot$TOKEN/sendDocument
+curl -X POST -H "content-type: application/json" -d "{\"chat_id\": \"$CHAT_ID\", \"text\": \"Date: $date\nDescription: $description\", \"disable_notification\": true}" https://api.telegram.org/bot"$TOKEN"/sendMessage
+curl -X POST -H "content-type: multipart/form-data" -F document=@"zone.txt" -F chat_id="$CHAT_ID" https://api.telegram.org/bot"$TOKEN"/sendDocument
 echo "✅ Success: zone_file sent to telegram." >&2
