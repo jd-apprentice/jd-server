@@ -18,9 +18,29 @@ jobs:
         id: scan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
 
-  uses: jd-apprentice/jd-server/.github/workflows/telegram.yml@main
-  with:
-    token: ${{ secrets.TELEGRAM_TOKEN }}
-    chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
+  telegram:
+    name: Send Inline Telegram Message
+    runs-on: ubuntu-latest
+    needs: scan
+    steps:
+      - uses: cbrgm/telegram-github-action@v1.0.9
+        with:
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          message: |
+            🚀 **New commit by ${{ github.actor }}!**
+
+            **Commit:** ${{ github.event.head_commit.message }}
+            **Repository:** ${{ github.repository }}
+            **View changes:** [GitHub Commit](${{ github.event.head_commit.url }})
+
+            📎 **Commit Details:**
+            - Author: ${{ github.event.head_commit.author.name }}
+            - Email: ${{ github.event.head_commit.author.email }}
+            - Date: ${{ github.event.head_commit.timestamp }}
+
+            🌐 **Repository Details:**
+            - Branch: ${{ github.ref }}
+            - SHA: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
