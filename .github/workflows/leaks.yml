@@ -29,8 +29,6 @@ jobs:
   telegram:
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
     with:
-      token: ${{ secrets.TELEGRAM_TOKEN }}
-      to: ${{ secrets.TELEGRAM_CHAT_ID }}
       message: |
             🚀 *New commit by ${{ github.actor }}!*
 
@@ -48,3 +46,6 @@ jobs:
             - SHA: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
       runs-on: ubuntu-latest
       name: Telegram Notification
+      secrets:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
