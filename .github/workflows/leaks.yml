@@ -12,7 +12,7 @@ on:
 jobs:
   scan:
     name: gitleaks
-    runs-on: ubnt-desa-01-artprov
+    runs-on: ubuntu-latest
     steps:
 
       - uses: actions/checkout@v3
