@@ -15,11 +15,15 @@ jobs:
     name: Shellcheck
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v3
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
         with:
           severity: "error"
+          
+    outputs:
+      result: ${{ steps.shellcheck.outputs.result }}
 
   telegram:
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main

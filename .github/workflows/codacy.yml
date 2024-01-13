@@ -57,6 +57,9 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif
+          
+    outputs:
+      result: ${{ steps.codacy-security-scan.outputs.result }}
   
   telegram:
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
