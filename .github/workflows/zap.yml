@@ -28,13 +28,14 @@ jobs:
 
   telegram:
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
+    if: always()
     with:
       message: |
         *ZAP Scan*
         *Repository:* ${{ github.repository }}
         *Branch:* ${{ github.ref }}
         *Event:* ${{ github.event_name }}
-        *Status:* ${{ job.status }}
+        *Status:* ${{ steps.zap_scan.outputs.status }}
         *Commit:* ${{ github.sha }}
 
         *Scan Result:*

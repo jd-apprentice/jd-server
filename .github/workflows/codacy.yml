@@ -60,13 +60,14 @@ jobs:
   
   telegram:
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
+    if: always()
     with:
       message: |
         *Codacy Security Scan*
         *Repository:* ${{ github.repository }}
         *Branch:* ${{ github.ref }}
         *Event:* ${{ github.event_name }}
-        *Status:* ${{ job.status }}
+        *Status:* ${{ steps.codacy-security-scan.outputs.status }}
         *Commit:* ${{ github.sha }}
 
         *Scan Result:*
