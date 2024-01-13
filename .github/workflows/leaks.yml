@@ -46,6 +46,6 @@ jobs:
             - SHA: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
       runs-on: ubuntu-latest
       name: Telegram Notification
-      secrets:
-        envTOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        envCHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    secrets:
+      envTOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      envCHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
