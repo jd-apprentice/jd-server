@@ -48,5 +48,5 @@ jobs:
       runs-on: ubuntu-latest
       name: Telegram Notification
     secrets:
+      envTO: ${{ secrets.TELEGRAM_TO }}
       envTOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-      envCHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
