@@ -27,7 +27,7 @@ jobs:
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
 
   telegram:
-    uses: jd-apprentice/jd-workflows/.github/workflows/telegram@v1
+    uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@v1
     with:
       token: ${{ secrets.TELEGRAM_TOKEN }}
       to: ${{ secrets.TELEGRAM_CHAT_ID }}
