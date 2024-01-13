@@ -1,5 +1,7 @@
 # Local Server
 
+<img alt="gitleaks badge" src="https://img.shields.io/badge/protected%20by-gitleaks-blue">
+
 Basic Network Diagram
 ![image](docs/networking/Basic_Approach.png)
 

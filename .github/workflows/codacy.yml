@@ -57,3 +57,23 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif
+  
+  telegram:
+    uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
+    with:
+      message: |
+        *Codacy Security Scan*
+        *Repository:* ${{ github.repository }}
+        *Branch:* ${{ github.ref }}
+        *Event:* ${{ github.event_name }}
+        *Status:* ${{ job.status }}
+        *Commit:* ${{ github.sha }}
+
+        *Scan Result:*
+        ${{ steps.codacy-security-scan.outputs.result }}
+        
+      runs-on: ubuntu-latest
+      name: Telegram Notification
+    secrets:
+      envTO: ${{ secrets.TELEGRAM_TO }}
+      envTOKEN: ${{ secrets.TELEGRAM_TOKEN }}

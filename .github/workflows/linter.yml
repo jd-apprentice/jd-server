@@ -20,3 +20,23 @@ jobs:
         uses: ludeeus/action-shellcheck@master
         with:
           severity: "error"
+
+  telegram:
+    uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
+    with:
+      message: |
+        *Shellcheck*
+        *Repository:* ${{ github.repository }}
+        *Branch:* ${{ github.ref }}
+        *Event:* ${{ github.event_name }}
+        *Status:* ${{ job.status }}
+        *Commit:* ${{ github.sha }}
+
+        *Scan Result:*
+        ${{ steps.shellcheck.outputs.result }}
+        
+      runs-on: ubuntu-latest
+      name: Telegram Notification
+    secrets:
+      envTO: ${{ secrets.TELEGRAM_TO }}
+      envTOKEN: ${{ secrets.TELEGRAM_TOKEN }}
