@@ -27,9 +27,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
 
-    outputs:
-      result: ${{ steps.scan.outputs.result }}
-
   telegram:
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
     with:
@@ -39,9 +36,6 @@ jobs:
         *Branch:* ${{ github.ref }}
         *Event:* ${{ github.event_name }}
         *Commit:* ${{ github.sha }}
-
-        *Scan Result:*
-        ${{ steps.scan.outputs.result }}
         
       runs-on: ubuntu-latest
       name: Telegram Notification

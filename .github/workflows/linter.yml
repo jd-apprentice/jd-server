@@ -21,9 +21,6 @@ jobs:
         uses: ludeeus/action-shellcheck@master
         with:
           severity: "error"
-          
-    outputs:
-      result: ${{ steps.shellcheck.outputs.result }}
 
   telegram:
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
@@ -34,9 +31,6 @@ jobs:
         *Branch:* ${{ github.ref }}
         *Event:* ${{ github.event_name }}
         *Commit:* ${{ github.sha }}
-
-        *Scan Result:*
-        ${{ steps.shellcheck.outputs.result }}
         
       runs-on: ubuntu-latest
       name: Telegram Notification
