@@ -11,11 +11,6 @@ on:
 
 jobs:
 
-  - uses: jd-apprentice/jd-server/.github/workflows/telegram.yml@main
-    with:
-      to: ${{ secrets.TELEGRAM_CHAT_ID }}
-      token: ${{ secrets.TELEGRAM_TOKEN }}
-
   scan:
     name: gitleaks
     runs-on: ubuntu-latest
