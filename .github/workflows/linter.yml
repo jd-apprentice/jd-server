@@ -23,14 +23,12 @@ jobs:
 
   telegram:
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
-    if: always()
     with:
       message: |
         *Shellcheck*
         *Repository:* ${{ github.repository }}
         *Branch:* ${{ github.ref }}
         *Event:* ${{ github.event_name }}
-        *Status:* ${{ steps.shellcheck.outputs.status }}
         *Commit:* ${{ github.sha }}
 
         *Scan Result:*
