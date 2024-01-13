@@ -35,6 +35,7 @@ jobs:
           fetch-depth: 0
     
       - uses: appleboy/telegram-action@v0.1.1
+        needs: scan
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
