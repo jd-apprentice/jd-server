@@ -26,7 +26,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
 
-  telegram:
+  telegram_notification:
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
     with:
       message: |
