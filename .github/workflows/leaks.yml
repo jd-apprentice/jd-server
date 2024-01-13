@@ -20,7 +20,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
 
-uses: jd-apprentice/jd-server/.github/workflows/telegram.yml@main
-with:
-  token: ${{ secrets.TELEGRAM_TOKEN }}
-  chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
+  uses: jd-apprentice/jd-server/.github/workflows/telegram.yml@main
+  with:
+    token: ${{ secrets.TELEGRAM_TOKEN }}
+    chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
