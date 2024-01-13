@@ -26,7 +26,7 @@ jobs:
           fetch-depth: 0
 
       - name: Notify
-        uses: ./.github/workflows/telegram.yml/
+        uses: jd-apprentice/jd-server/.github/workflows/telegram.yml@main
         with:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
