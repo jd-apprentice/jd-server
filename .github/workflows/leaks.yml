@@ -21,17 +21,7 @@ jobs:
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
 
   telegram:
-    name: gitleaks
-    runs-on: ubuntu-latest
-    steps:
-    
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Notify
-        uses: jd-apprentice/jd-server/.github/workflows/telegram.yml@main
-        with:
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
+    uses: jd-apprentice/jd-server/.github/workflows/telegram.yml@main
+    with:
+      token: ${{ secrets.TELEGRAM_TOKEN }}
+      chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
