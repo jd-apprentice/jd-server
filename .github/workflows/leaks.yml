@@ -25,3 +25,26 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
+
+  telegram:
+    uses: jd-apprentice/jd-workflows/.github/workflows/telegram@v1
+    with:
+      token: ${{ secrets.TELEGRAM_TOKEN }}
+      to: ${{ secrets.TELEGRAM_CHAT_ID }}
+      message: |
+            🚀 *New commit by ${{ github.actor }}!*
+
+            *Commit:* ${{ github.event.head_commit.message }}
+            *Repository:* ${{ github.repository }}
+            *View changes:* [GitHub Commit](${{ github.event.head_commit.url }})
+
+            📎 *Commit Details:*
+            - Author: ${{ github.event.head_commit.author.name }}
+            - Email: ${{ github.event.head_commit.author.email }}
+            - Date: ${{ github.event.head_commit.timestamp }}
+
+            🌐 *Repository Details:*
+            - Branch: ${{ github.ref }}
+            - SHA: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+      runs-on: ubuntu-latest
+      name: Telegram Notification
