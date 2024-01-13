@@ -8,7 +8,7 @@ on:
 jobs:
   scan:
     name: gitleaks
-    runs-on: ubuntu-latest
+    runs-on: ubnt-desa-01-artprov
     steps:
       - uses: actions/checkout@v3
         with:
@@ -25,7 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: scan
     steps:
-      - uses: cbrgm/telegram-github-action@v1.0.9
+      - name: Send Inline Telegram Message
+        uses: appleboy/telegram-action@master
         with:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
