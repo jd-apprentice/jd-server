@@ -17,7 +17,7 @@ jobs:
       name: Gitleaks
     secrets:
       gh_token: ${{ secrets.GITHUB_TOKEN }}
-      
+
   telegram:
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
     with:
@@ -42,11 +42,6 @@ jobs:
 
         📝 Workflow Name: *${{ github.workflow }}*
         📝 Workflow Url: *${{ github.event.workflow_run.url }}*
-
-        *📝 Job Details*
-
-        📝 Job Name: *${{ github.job }}*
-        📝 Job Status: *${{ job.status }}*
 
       runs-on: ubuntu-latest
       name: Telegram Notification
