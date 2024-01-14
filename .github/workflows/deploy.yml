@@ -10,15 +10,44 @@ on:
       - ".github/workflows/*"
 
 jobs:
+  gitleaks:
+    uses: jd-apprentice/jd-workflows/.github/workflows/gitleaks.yml@main
+    with:
+      runs-on: ubuntu-latest
+      name: Gitleaks
+    secrets:
+      gh_token: ${{ secrets.GITHUB_TOKEN }}
+      
   telegram:
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
     with:
       message: |
-        🚀 *Pipeline* *${{ github.workflow }}*
-        📔 *${{ github.repository }}* 🔗 *${{ github.ref }}*
-        ⏰ *${{ github.sha }}* 🧑‍💼 *${{ github.actor }}*
-        🎉 *${{ github.event_name }}*
-        🗨 *${{ github.workspace }}*
+        *📝 Action Details*
+
+        📝 Event Name: *${{ github.event_name }}*
+        📝 Event Repository: *${{ github.event.repository }}*
+
+        *📝 Commit Details*
+
+        📝 Actor: *${{ github.actor }}*
+        📝 Commit Message: *${{ github.event.head_commit.message }}*
+        📝 Commit Url: *${{ github.event.head_commit.url }}*
+
+        *📝 Repository Details*
+
+        📝 Repository Name: *${{ github.repository }}*
+        📝 Repository Url: *${{ github.event.repository.url }}*
+
+        *📝 Workflow Details*
+
+        📝 Workflow Name: *${{ github.workflow }}*
+        📝 Workflow Url: *${{ github.event.workflow_run.url }}*
+
+        *📝 Job Details*
+
+        📝 Job Name: *${{ github.job }}*
+        📝 Job Status: *${{ job.status }}*
+
       runs-on: ubuntu-latest
       name: Telegram Notification
 
