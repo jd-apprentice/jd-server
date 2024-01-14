@@ -1,0 +1,24 @@
+name: Codacy - Gitleaks - Shellcheck - Zap - Telegram
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "ansible/*"
+
+jobs:
+  telegram:
+    uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
+    with:
+      message: |
+        🚀 *Pipeline* *${{ github.workflow }}*
+        📔 *${{ github.repository }}* 🔗 *${{ github.ref }}*
+        ⏰ *${{ github.sha }}* 🧑‍💼 *${{ github.actor }}*
+        🎉 *${{ github.event_name }}*
+        🗨 *${{ github.workspace }}*
+
+    secrets:
+      envTOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+      envTO: ${{ secrets.TELEGRAM_TO }}
