@@ -18,6 +18,8 @@ jobs:
         ⏰ *${{ github.sha }}* 🧑‍💼 *${{ github.actor }}*
         🎉 *${{ github.event_name }}*
         🗨 *${{ github.workspace }}*
+      runs-on: ubuntu-latest
+      name: Telegram Notification
 
     secrets:
       envTOKEN: ${{ secrets.TELEGRAM_TOKEN }}
