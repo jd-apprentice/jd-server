@@ -3,10 +3,10 @@ name: Codacy - Gitleaks - Shellcheck - Zap - Telegram
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
-      - '!README.md'
+      - "ansible/**"
+      - ".github/workflows/**"
 
 jobs:
   codacy:
