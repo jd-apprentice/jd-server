@@ -17,9 +17,7 @@ Projects:
 
 - Portfolio
 - Pi-Hole
-- Arcade Web
 - File Share
-- Uptime Kuma
 - SSH Web Terminal
 - Container Logs
 - Backup Service

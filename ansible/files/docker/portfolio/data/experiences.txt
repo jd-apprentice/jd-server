@@ -11,6 +11,13 @@ Sep 2023 - Present
 [stack]
 Azure - Ansible - Terraform - Nginx - Kong - Authentik - Kubernetes - Docker - Ubuntu Server - CentOS - Proxmox - Cloudflare - Zero Trust - Bash - Nodejs - Nextjs - Microservices
 
+[description]
+Gather client requirements, scrum ceremonies.
+Design infrastructure, implementation, and technical documentation.
+Research tools and practices to enhance the systems.
+Address technical debt within my first months.
+Mentor team members to follow best practices.
+
 ###############
 #AUTOINSPECTOR#
 ###############

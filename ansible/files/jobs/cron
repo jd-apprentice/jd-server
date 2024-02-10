@@ -6,3 +6,8 @@ MAILTO=contacto@jonathan.com.ar
 0 * * * * sh $HOME/scripts/usage.sh >> $HOME/logs/usage.log
 0 * * * * sh $HOME/scripts/alerts.sh >> $HOME/logs/alert.log
 0 3 * * 1 sh $HOME/scripts/backup.sh $HOME/www/* >> $HOME/logs/backup.log
+
+# External
+
+*/10  * * * * curl https://do-discord-bot.onrender.com/
+*/10  * * * * curl https://omc.eventitos.com.ar/
