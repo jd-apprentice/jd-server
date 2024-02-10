@@ -1,0 +1,90 @@
+version: "3.8"
+
+services:
+  portfolio:
+    image: pldubouilh/gossa
+    mem_limit: 50m
+    memswap_limit: 100m
+    ports:
+      - "3500:3500"
+    volumes:
+      - ./portfolio/data:/shared:ro
+    command: ./gossa -ro -p 3500
+    restart: always
+    networks:
+      lan:
+        ipv4_address: 10.5.0.5
+
+  gossa:
+    image: pldubouilh/gossa
+    mem_limit: 50m
+    memswap_limit: 100m
+    restart: always
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./shared/data:/shared
+    networks:
+      lan:
+        ipv4_address: 10.5.0.6
+
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    mem_limit: 50m
+    memswap_limit: 100m
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+    environment:
+      TZ: "America/Buenos_Aires"
+      WEBPASSWORD: ${WEBPASSWORD}
+    env_file:
+      - .env
+    volumes:
+      - "./pihole/etc-pihole:/etc/pihole"
+      - "./pihole/etc-dnsmasq.d:/etc/dnsmasq.d"
+    cap_add:
+      - NET_ADMIN
+    restart: always
+    networks:
+      lan:
+        ipv4_address: 10.5.0.7
+
+  dozzle:
+    container_name: dozzle
+    image: amir20/dozzle:latest
+    mem_limit: 50m
+    memswap_limit: 100m
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 9999:8080
+    networks:
+      lan:
+        ipv4_address: 10.5.0.8
+
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    mem_limit: 50m
+    memswap_limit: 100m
+    restart: always
+    ports:
+      - 4000:3000
+    volumes:
+      - ./links/config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      lan:
+        ipv4_address: 10.5.0.9
+
+networks:
+  lan:
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
