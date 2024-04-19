@@ -11,14 +11,17 @@
       - Logs:
             href: https://logs.jonathan.com.ar
             description: Docker container logs
-      - Gists:
-            href: https://gist.jonathan.com.ar
-            description: My personal gist server
+      - Notes:
+            href: https://Notes.jonathan.com.ar
+            description: Platform to take notes
 
 - External:
       - Blog:
             href: https://blog.jonathan.com.ar
             description: My personal blog with hashnode
+      - HTB:
+            href: https://app.hackthebox.com/profile/834305
+            description: My profile in Hack The Box
       - Github:
             href: https://github.com/jd-apprentice
             description: My github account

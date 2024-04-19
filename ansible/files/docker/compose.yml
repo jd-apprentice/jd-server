@@ -57,6 +57,27 @@ services:
       lan:
         ipv4_address: 10.5.0.9
 
+  flatnotes:
+    container_name: flatnotes
+    image: dullage/flatnotes:latest
+    environment:
+      PUID: 1000
+      PGID: 1000
+      FLATNOTES_AUTH_TYPE: "password"
+      FLATNOTES_USERNAME: "${USERNAME_FLATNOTES}"
+      FLATNOTES_PASSWORD: "${PASSWORD_FLATNOTES}"
+      FLATNOTES_SECRET_KEY: "${SECRET_FLATNOTES}"
+    volumes:
+      - "./flatnotes/data:/data"
+    env_file:
+      - .env
+    ports:
+      - "5080:8080"
+    restart: unless-stopped
+    networks:
+      lan:
+         ipv4_address: 10.5.0.10
+
 networks:
   lan:
     ipam:
