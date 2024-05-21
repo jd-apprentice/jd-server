@@ -1,6 +1,7 @@
 - name: Update system and install packages
   hosts: raspberry
   become: yes
+  
   tasks:
     - name: Run apt-get update
       become: yes

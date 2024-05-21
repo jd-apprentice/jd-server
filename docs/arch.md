@@ -1,4 +1,5 @@
 ## Connect to WiFi -> https://www.youtube.com/watch?v=3zqITuprlL8
+
 iwctl
 device list
 station <device> scan

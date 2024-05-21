@@ -131,7 +131,7 @@ Since i'm running everything inside containers, I'll use Dozzle to see the logs 
 
 ### Backup 📦 Alerts 🚨 Monitoring 📊
 
-Mannually backup the server with a cronjob and bash.
+Manually backup the server with a cronjob and bash.
 Alerts for the cloudflare tunnel with a cronjob as well.
 Monitor cpu, ram, disk usage with a cronjob too.
 
@@ -141,8 +141,11 @@ Cron jobs are under /etc/cron.<time>
 
 ## Available hardware 🖥
 
-- Raspberry Pi Zero 2 W
-    - 4 Cores (ARMV7) 512MB RAM 16GB MicroSD
+- Raspberry Pi Zero 2 W x 3
+    - 4 Cores (ARMV8) 512MB RAM 64GB MicroSD
+    - Debian 11
+
+- Raspberry Pi 4 (Soon)
 
 - TV Box 4 Cores (ARM) 2GB RAM
     - 16GB MicroSD
