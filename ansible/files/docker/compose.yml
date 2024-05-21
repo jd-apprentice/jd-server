@@ -15,33 +15,6 @@ services:
       lan:
         ipv4_address: 10.5.0.5
 
-  gossa:
-    image: pldubouilh/gossa
-    mem_limit: 50m
-    memswap_limit: 100m
-    restart: always
-    ports:
-      - "8001:8001"
-    volumes:
-      - ./shared/data:/shared
-    networks:
-      lan:
-        ipv4_address: 10.5.0.6
-
-  dozzle:
-    container_name: dozzle
-    image: amir20/dozzle:latest
-    mem_limit: 50m
-    memswap_limit: 100m
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - 9999:8080
-    networks:
-      lan:
-        ipv4_address: 10.5.0.8
-
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
@@ -56,27 +29,6 @@ services:
     networks:
       lan:
         ipv4_address: 10.5.0.9
-
-  flatnotes:
-    container_name: flatnotes
-    image: dullage/flatnotes:latest
-    environment:
-      PUID: 1000
-      PGID: 1000
-      FLATNOTES_AUTH_TYPE: "password"
-      FLATNOTES_USERNAME: "${USERNAME_FLATNOTES}"
-      FLATNOTES_PASSWORD: "${PASSWORD_FLATNOTES}"
-      FLATNOTES_SECRET_KEY: "${SECRET_FLATNOTES}"
-    volumes:
-      - "./flatnotes/data:/data"
-    env_file:
-      - .env
-    ports:
-      - "5080:8080"
-    restart: unless-stopped
-    networks:
-      lan:
-         ipv4_address: 10.5.0.10
 
 networks:
   lan:
