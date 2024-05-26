@@ -63,4 +63,4 @@ jobs:
         run: |
           echo "Copying cronjob files to node01 server"
           mv ansible/files/node01/jobs/cron ${{ secrets.USER }}
-          cp ansible/files/node01/jobs/${{ secrets.USER }} ${{ env.NODE01_CRONJOB_PATH }}
+          echo ${{ secrets.USERPASSWD }} | sudo -S cp ansible/files/node01/jobs/${{ secrets.USER }} ${{ env.NODE01_CRONJOB_PATH }}
