@@ -57,10 +57,10 @@ jobs:
       - name: Setup docker
         run: |
           echo "Copying docker files to node01 server"
-          cp -r ansible/files/node01/docker/* {{ env.NODE01_DOCKER_PATH }}
+          cp -r ansible/files/node01/docker/* ${{ env.NODE01_DOCKER_PATH }}
 
       - name: Setup cronjob
         run: |
           echo "Copying cronjob files to node01 server"
-          mv ansible/files/node01/jobs/cron {{ secrets.USER }}
-          cp ansible/files/node01/jobs/{{ secrets.USER }} {{ env.NODE01_CRONJOB_PATH }}
+          mv ansible/files/node01/jobs/cron ${{ secrets.USER }}
+          cp ansible/files/node01/jobs/${{ secrets.USER }} ${{ env.NODE01_CRONJOB_PATH }}
