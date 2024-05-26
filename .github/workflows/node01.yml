@@ -55,12 +55,19 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup docker
+        if : ${{ contains(github.commit.message, 'docker') }}
         run: |
           echo "Copying docker files to node01 server"
           cp -r ansible/files/node01/docker/* ${{ env.NODE01_DOCKER_PATH }}
 
       - name: Setup cronjob
+        if: ${{ contains(github.commit.message, 'cronjob') }}
         run: |
           echo "Copying cronjob files to node01 server"
           mv ansible/files/node01/jobs/cron ${{ secrets.USER }}
           echo ${{ secrets.USERPASSWD }} | sudo -S cp ansible/files/node01/jobs/${{ secrets.USER }} ${{ env.NODE01_CRONJOB_PATH }}
+
+      - name: Cleanup
+        run: |
+          echo "Cleanup files"
+          rm -rf jd-server/*
