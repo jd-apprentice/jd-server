@@ -25,8 +25,8 @@ split --bytes=49M backup-"$date"-"$SERVER_NAME".tar.gz
 # https://gist.github.com/HirbodBehnam/d7a46fac29f5e1f664d467d5a05620dd
 for file in x*; do
     echo "💾 Uploading $file"
-    curl -X POST -H "content-type: application/json" -d "{\"server\": \"$SERVER_NAME\", \"Date: $date\n"}" https://api.telegram.org/bot"$TOKEN"/sendMessage
-    curl -X POST -H "content-type: application/json" -d "{\"chat_id\": \"$CHAT_ID\", \"text\": \"Date: $date\nFile: $file\", \"disable_notification\": true}" https://api.telegram.org/bot"$TOKEN"/sendMessage
+    curl -X POST -H "content-type: application/json" -d "{\"server\": \"$SERVER_NAME\", \"Date: $date\n, \"disable_notification\": true}" https://api.telegram.org/bot"$TOKEN"/sendMessage
+    curl -X POST -H "content-type: application/json" -d "{\"chat_id\": \"$CHAT_ID\", \"Date: $date\nFile: $file\", \"disable_notification\": true}" https://api.telegram.org/bot"$TOKEN"/sendMessage
     curl -X POST -H "content-type: multipart/form-data" -F document=@"$file" -F chat_id="$CHAT_ID" https://api.telegram.org/bot"$TOKEN"/sendDocument
 done
 
