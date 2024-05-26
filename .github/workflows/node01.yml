@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "ansible/files/node01/**"
+      - ".github/workflows/node01.yml"
 
 env:
   NODE01_DOCKER_PATH: /home/{{ secrets.USER }}/www
