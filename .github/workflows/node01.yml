@@ -9,8 +9,8 @@ on:
       - ".github/workflows/node01.yml"
 
 env:
-  NODE01_DOCKER_PATH: /home/{{ secrets.USER }}/www
-  NODE01_CRONJOB_PATH: /var/spool/cron/crontabs/{{ secrets.USER }}
+  NODE01_DOCKER_PATH: /home/${{ secrets.USER }}/www
+  NODE01_CRONJOB_PATH: /var/spool/cron/crontabs/${{ secrets.USER }}
 
 permissions:
   actions: write
