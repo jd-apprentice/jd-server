@@ -1,6 +1,13 @@
-[raspberry]
+[base]
 pi.local
 
-[raspberry:vars]
+[base:vars]
+ansible_ssh_user=
+ansible_ssh_pass=
+
+[node01]
+node01.local
+
+[node01:vars]
 ansible_ssh_user=
 ansible_ssh_pass=

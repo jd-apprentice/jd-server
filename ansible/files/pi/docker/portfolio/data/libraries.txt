@@ -1,0 +1,88 @@
+##############
+#GET ME PORTS#
+##############
+
+[platform]
+Linux
+
+[stack]
+Zig
+
+[description]
+Clean your nmap output and get the open ports
+
+[download]
+https://github.com/jd-apprentice/hacking-tools/releases
+
+###########
+#   MKS   #
+###########
+
+[platform]
+Linux
+
+[stack]
+Zig
+
+[description]
+Create a scafold for your hacking projects
+
+[download]
+https://github.com/jd-apprentice/hacking-tools/releases
+
+###########
+#DBN TOOLS#
+###########
+
+[platform]
+Linux
+
+[stack]
+Bash - Python - Docker - Make
+
+[description]
+A collection of system tools to optimize and improve your computer's performance. 
+
+[docs]
+https://dbn-tools.jonathan.com.ar/
+
+[download]
+https://github.com/jd-apprentice/dbn-tools/releases
+
+######################
+#INSTAGRAM TO DISCORD#
+######################
+
+[platform]
+Linux - Windows
+
+[stack]
+Bash - Python - Batch
+
+[description]
+Download stuff from instagram and post it on discord
+
+[docs]
+https://github.com/jd-apprentice/instagram-to-discord#readme
+
+[download]
+https://pypi.org/project/instagram-to-discord/
+
+#######################
+#DISCORD SLACK GATEWAY#
+#######################
+
+[platform]
+Linux - Windows
+
+[stack]
+Javascript - Make
+
+[description]
+Bridge between discord and slack, send message in both ways
+
+[docs]
+https://github.com/jd-apprentice/discord-slack-gateway#readme
+
+[download]
+https://www.npmjs.com/package/discord-slack-gateway

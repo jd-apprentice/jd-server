@@ -1,0 +1,21 @@
+#################
+#BASE WEB SERVER#
+#################
+
+[platform]
+Linux
+
+[stack]
+Ansible - Terraform - AWS EC2 - Docker - Make - Bash
+
+[description]
+Create a web server in AWS with docker pre-installed and configurations exposed to web traffic
+
+[docs]
+https://github.com/jd-apprentice/base-web-server#readme
+
+[blog]
+https://blog.jonathan.com.ar/unleashing-automation-spinning-up-ec2-instances-with-the-dynamic-duo-of-terraform-and-ansible
+
+[repository]
+https://github.com/jd-apprentice/base-web-server

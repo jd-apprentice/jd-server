@@ -1,0 +1,6 @@
+MAILTO=contacto@jonathan.com.ar
+0 3 * * 1 apt-get autoremove -y && apt-get clean
+0 0 1 * 1 apt-get update && apt-get upgrade
+
+0 * * * * sh $HOME/scripts/usage.sh >> $HOME/logs/usage.log
+0 3 * * 1 sh $HOME/scripts/backup.sh $HOME/www/* >> $HOME/logs/backup.log
