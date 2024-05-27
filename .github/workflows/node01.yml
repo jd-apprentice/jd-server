@@ -42,6 +42,11 @@ jobs:
 
         📝 Workflow Name: ${{ github.workflow }}
 
+        _📚 Jobs_
+
+        📝 Delete Status: ${{ jobs.delete.result }}
+        📝 Deploy Status: ${{ jobs.deploy.result }}
+
       runs-on: ubuntu-latest
       name: Telegram Notification
 
@@ -50,15 +55,18 @@ jobs:
       envTO: ${{ secrets.TELEGRAM_TO }}
   
   delete:
+    id: delete
     runs-on: self-hosted
     if: contains(github.event.head_commit.message, 'delete')
     steps:
       - name: Delete docker
         run: |
           echo "Deleting docker files from node01 server"
-          docker compose -f ${{ env.NODE01_DOCKER_PATH }}/compose.yml stop ${{ vars.SERVICE }} && docker rm $_
+          docker compose -f ${{ env.NODE01_DOCKER_PATH }}/compose.yml stop ${{ vars.SERVICE }}
+          docker system prune --all
   
   deploy:
+    id: deploy
     runs-on: self-hosted
     if: contains(github.event.head_commit.message, 'deploy')
     steps:
