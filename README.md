@@ -2,6 +2,8 @@
 
 <img alt="gitleaks badge" src="https://img.shields.io/badge/protected%20by-gitleaks-blue">
 
+![SelfHosting](https://github.com/jd-apprentice/jd-server/assets/68082746/4e261b6a-6b1f-4b7c-97b4-be29ab8a10b7)
+
 Basic Network Diagram
 ![image](docs/networking/Basic_Approach.png)
 
