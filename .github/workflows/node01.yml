@@ -48,6 +48,18 @@ jobs:
       envTOKEN: ${{ secrets.TELEGRAM_TOKEN }}
       envTO: ${{ secrets.TELEGRAM_TO }}
   
+  delete:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Delete docker
+        if: contains(github.event.head_commit.message, 'delete')
+        run: |
+          echo "Deleting docker files from node01 server"
+          docker stop ${{ env.SERVICE }} && docker rm $_
+  
   deploy:
     runs-on: self-hosted
     steps:
