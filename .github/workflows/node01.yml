@@ -51,15 +51,12 @@ jobs:
   
   delete:
     runs-on: self-hosted
+    if: contains(github.event.head_commit.message, 'delete')
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Delete docker
-        if: contains(github.event.head_commit.message, 'delete')
         run: |
           echo "Deleting docker files from node01 server"
-          docker stop ${{ vars.SERVICE }} && docker rm $_
+          docker compose -f ${{ env.NODE01_DOCKER_PATH }}/compose.yml stop ${{ vars.SERVICE }} && docker rm $_
   
   deploy:
     runs-on: self-hosted
@@ -86,3 +83,4 @@ jobs:
         run: |
           echo "Cleanup files"
           rm -rf jd-server/*
+          rm -rf ansible/files/node01/*
