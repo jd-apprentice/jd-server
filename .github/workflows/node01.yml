@@ -59,6 +59,7 @@ jobs:
         run: |
           echo "Copying docker files to node01 server"
           cp -r ansible/files/node01/docker/* ${{ env.NODE01_DOCKER_PATH }}
+          docker compose -f ${{ env.NODE01_DOCKER_PATH }}/compose.yml up -d
 
       - name: Setup cronjob
         if: ${{ contains(github.commit.message, 'cronjob') }}
