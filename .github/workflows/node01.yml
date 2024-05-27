@@ -44,8 +44,8 @@ jobs:
 
         _📚 Jobs_
 
-        📝 Delete Status: ${{ jobs.delete.result }}
-        📝 Deploy Status: ${{ jobs.deploy.result }}
+        📝 Delete Status: ${{ job.status.delete }}
+        📝 Deploy Status: ${{ job.status.deploy }}
 
       runs-on: ubuntu-latest
       name: Telegram Notification
