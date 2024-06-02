@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+
+networks:
+  lan:
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1

@@ -3,9 +3,10 @@
 # 0 3 * * 1 backup $HOME/www/*
 # alias backup='sh $HOME/scripts/backup.sh'
 
+source constants.sh
+
 TOKEN=""
 CHAT_ID=""
-SERVER_NAME=""
 
 if [ "$#" -eq 0 ]; then
     echo "🟩 Usage: $0 directory/*"

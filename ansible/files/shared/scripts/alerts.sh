@@ -2,9 +2,10 @@
 # 0 * * * * alerts
 # alias alerts='sh $HOME/scripts/alerts.sh'
 
+source constants.sh
+
 TOKEN=""
 CHAT_ID=""
-SERVER_NAME=""
 
 echo "🛑 Checking if cloudflared is running"
 

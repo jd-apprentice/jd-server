@@ -11,3 +11,10 @@ node01.local
 [node01:vars]
 ansible_ssh_user=
 ansible_ssh_pass=
+
+[node02]
+node02.local
+
+[node02:vars]
+ansible_ssh_user=
+ansible_ssh_pass=
