@@ -1,0 +1,27 @@
+---
+- name: Create folders
+  hosts: node01
+  tasks:
+    - name: Create logs directory
+      file:
+        path: $HOME/logs
+        state: directory
+        mode: '0755'
+
+    - name: Create scripts directory
+      file:
+        path: $HOME/scripts
+        state: directory
+        mode: '0755'
+
+    - name: Create security directory
+      file:
+        path: $HOME/security
+        state: directory
+        mode: '0755'
+
+    - name: Create www directory
+      file:
+        path: $HOME/www
+        state: directory
+        mode: '0755'
