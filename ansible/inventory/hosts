@@ -1,7 +1,7 @@
-[base]
+[node00]
 pi.local
 
-[base:vars]
+[node00:vars]
 ansible_ssh_user=
 ansible_ssh_pass=
 

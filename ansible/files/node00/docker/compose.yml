@@ -1,20 +1,6 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  portfolio:
-    image: pldubouilh/gossa
-    mem_limit: 50m
-    memswap_limit: 100m
-    ports:
-      - "3500:3500"
-    volumes:
-      - ./portfolio/data:/shared:ro
-    command: ./gossa -ro -p 3500
-    restart: always
-    networks:
-      lan:
-         ipv4_address: 10.5.0.5
-
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
@@ -44,7 +30,7 @@ services:
 
 networks:
   lan:
-    ipam:
-      config:
-        - subnet: 10.5.0.0/16
-          gateway: 10.5.0.1
+   ipam:
+    config:
+      - subnet: 10.5.0.0/16
+        gateway: 10.5.0.1

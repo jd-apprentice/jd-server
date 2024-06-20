@@ -1,10 +1,9 @@
 #!/bin/bash
 # 0 * * * * usage
 
-source constants.sh
-
 TOKEN=""
 CHAT_ID=""
+SERVER_NAME=$(hostname)
 
 cpuUsage=$(top -bn1 | awk '/Cpu/ { print int($2) }' | sed 's/%//')
 memUsage=$(free -m | awk '/Mem/ { print $3 }' | sed 's/MB//')

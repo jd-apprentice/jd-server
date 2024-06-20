@@ -2,6 +2,20 @@ version: "3.8"
 
 services:
 
+  dashdot:
+    image: mauricenino/dashdot
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    volumes:
+      - "/:/mnt/host:ro"
+    privileged: true
+    environment:
+      DASHDOT_ENABLE_CPU_TEMPS: 'true'
+    networks:
+      lan:
+         ipv4_address: 10.5.0.11
+
 networks:
   lan:
     ipam:
