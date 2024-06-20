@@ -30,18 +30,6 @@ services:
       lan:
          ipv4_address: 10.5.0.11
 
-  memos:
-    image: neosmemo/memos:stable
-    container_name: memos
-    restart: unless-stopped
-    volumes:
-      - ./memos/:/var/opt/memos
-    ports:
-      - 5230:5230
-    networks:
-      lan:
-         ipv4_address: 10.5.0.10
-
   ## https://dozzle.dev/guide/remote-hosts#connecting-with-a-socket-proxy
   docker-socket-proxy:
     image: tecnativa/docker-socket-proxy
