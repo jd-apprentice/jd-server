@@ -16,6 +16,18 @@ services:
       lan:
          ipv4_address: 10.5.0.11
 
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy
+    privileged: true
+    restart: unless-stopped
+    environment:
+      CONTAINERS: 1
+      INFO: 1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "2375:2375"
+
 networks:
   lan:
     ipam:

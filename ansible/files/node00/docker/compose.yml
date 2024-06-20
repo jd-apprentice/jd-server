@@ -6,7 +6,7 @@ services:
     container_name: homepage
     mem_limit: 50m
     memswap_limit: 100m
-    restart: always
+    restart: unless-stopped
     ports:
       - 4000:3000
     volumes:
@@ -16,10 +16,24 @@ services:
       lan:
          ipv4_address: 10.5.0.9
 
+  dashdot:
+    image: mauricenino/dashdot
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    volumes:
+      - "/:/mnt/host:ro"
+    privileged: true
+    environment:
+      DASHDOT_ENABLE_CPU_TEMPS: 'true'
+    networks:
+      lan:
+         ipv4_address: 10.5.0.11
+
   memos:
     image: neosmemo/memos:stable
     container_name: memos
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./memos/:/var/opt/memos
     ports:
@@ -27,6 +41,19 @@ services:
     networks:
       lan:
          ipv4_address: 10.5.0.10
+
+  ## https://dozzle.dev/guide/remote-hosts#connecting-with-a-socket-proxy
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy
+    restart: unless-stopped
+    privileged: true
+    environment:
+      CONTAINERS: 1
+      INFO: 1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "2375:2375"
 
 networks:
   lan:
