@@ -1,21 +1,6 @@
 version: '3.8'
 
 services:
-  homepage:
-    image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage
-    mem_limit: 50m
-    memswap_limit: 100m
-    restart: unless-stopped
-    ports:
-      - 4000:3000
-    volumes:
-      - ./links/config:/app/config
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      lan:
-         ipv4_address: 10.5.0.9
-
   dashdot:
     image: mauricenino/dashdot
     restart: unless-stopped
