@@ -13,3 +13,9 @@ Status is being tracked with BetterStack, you can check it [here](https://status
 ## 🧰 Documentation
 
 Work in progress
+
+## 📚 Wiki
+
+First approach is this one
+
+![docs](docs/networking/Basic_Approach.png)
