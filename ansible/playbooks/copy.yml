@@ -1,0 +1,22 @@
+---
+- name: create files and folders
+  hosts: raspberry
+  become_user: dyallo
+  gather_facts: false
+  
+  tasks:
+    - name: copy backup
+      copy:
+        src: "../files/shared/scripts/backup.sh"
+        dest: "$HOME/scripts/"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: 0755
+
+    - name: copy usage
+      copy:
+        src: "../files/shared/scripts/usage.sh"
+        dest: "$HOME/scripts/"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: 0755
