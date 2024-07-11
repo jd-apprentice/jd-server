@@ -48,4 +48,6 @@ jobs:
         # Runs Snyk Infrastructure as Code (IaC) analysis and uploads result to Snyk.
         # Use || true to not fail the pipeline.
       - name: Snyk IaC test and report
-        run: snyk iac test --report || true
+        run: |
+          snyk auth ${{ secrets.SNYK_TOKEN }}
+          snyk iac test --report || true
