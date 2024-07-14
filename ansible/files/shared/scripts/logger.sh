@@ -3,6 +3,10 @@
 ## EXECUTABLE: chmod +x logger.sh ; sudo mv logger.sh /usr/local/bin/logger
 ## CRON: */15 * * * * logger <database_name> <timeframe>
 
+### This is the path where turso is installed
+### If this is not used, the script won't recognize the turso command
+export PATH=/home/dyallo/.turso:$PATH
+
 database=${1:-logs}
 timeframe=${2:-15}
 
@@ -13,7 +17,7 @@ if [[ $is_turso_installed -eq 0 ]]; then
     exit 1
 fi
 
-db_exists=$(turso db list | grep $database | wc -l)
+db_exists=$(turso db list | grep "$database" | wc -l)
 
 if [[ $db_exists -eq 0 ]]; then
     echo "Database $database does not exist. Please create it first."
@@ -47,11 +51,11 @@ done
 function turso_exec() {
     local db=$1
     local command=$2
-    turso db shell "$db" "$command"
+    turso db shell "$db" "$command" 2>$HOME/logs/turso.err
 }
 
 for line in "${unique_array[@]}"; do
-    key=$(turso_exec $database "SELECT id FROM $database";)
+    key=$(turso_exec "$database" "SELECT id FROM $database";)
     id=$(echo "$key" | tr -d 'ID' | awk '{print $0}' | tr -s ' ' | sort -n | tail -1)
 
     logs=($line)
@@ -61,6 +65,6 @@ for line in "${unique_array[@]}"; do
     log=$(echo "$log" | sed "s/'/''/g")
     index="$((id + 1))"
 
-    turso_exec $database "INSERT INTO $database (id, date, hostname, log_message) VALUES ('$index', '$date', '$hostname', '$log');"
+    turso_exec "$database" "INSERT INTO $database (id, date, hostname, log_message) VALUES ('$index', '$date', '$hostname', '$log');"
     echo "Added: $line"
 done
