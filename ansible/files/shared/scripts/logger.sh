@@ -1,9 +1,10 @@
 #!/bin/bash
 ## This script is used to monitor the syslog file and store the logs in a database.
 ## EXECUTABLE: chmod +x logger.sh ; sudo mv logger.sh /usr/local/bin/logger
-## CRON: */15 * * * * logger <database_name>
+## CRON: */15 * * * * logger <database_name> <timeframe>
 
 database=${1:-logs}
+timeframe=${2:-15}
 
 is_turso_installed=$(dpkg -l | grep turso | wc -l)
 
@@ -21,7 +22,7 @@ if [[ $db_exists -eq 0 ]]; then
 fi
 
 current_time=$(date +"%b %d %H:%M")
-previous_time=$(date -d "15 minutes ago" +"%b %d %H:%M")
+previous_time=$(date -d "$timeframe minutes ago" +"%b %d %H:%M")
 file_to_monitor="/var/log/syslog"
 
 output=$(awk -v cur_time="$current_time" -v prev_time="$previous_time" '{
@@ -48,8 +49,6 @@ function turso_exec() {
     local command=$2
     turso db shell "$db" "$command"
 }
-
-turso db shell $database "DELETE FROM $database"
 
 for line in "${unique_array[@]}"; do
     key=$(turso_exec $database "SELECT id FROM $database";)
