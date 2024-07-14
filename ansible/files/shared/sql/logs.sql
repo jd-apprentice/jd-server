@@ -1,0 +1,6 @@
+CREATE TABLE logs (
+    id VARCHAR(36) PRIMARY KEY,
+    date TIMESTAMP NOT NULL,
+    hostname VARCHAR(255) NOT NULL,
+    log_message TEXT NOT NULL
+);

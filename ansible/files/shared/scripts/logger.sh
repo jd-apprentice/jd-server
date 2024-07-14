@@ -5,14 +5,14 @@
 
 ### This is the path where turso is installed
 ### If this is not used, the script won't recognize the turso command
-export PATH=/home/dyallo/.turso:$PATH
+export PATH=$HOME/.turso:$PATH
 
 database=${1:-logs}
 timeframe=${2:-15}
 
-is_turso_installed=$(dpkg -l | grep turso | wc -l)
+turso_path="$HOME/.turso"
 
-if [[ $is_turso_installed -eq 0 ]]; then
+if [[ ! -d $turso_path ]]; then
     echo "Turso is not installed. Please install it first."
     exit 1
 fi
@@ -55,15 +55,12 @@ function turso_exec() {
 }
 
 for line in "${unique_array[@]}"; do
-    key=$(turso_exec "$database" "SELECT id FROM $database";)
-    id=$(echo "$key" | tr -d 'ID' | awk '{print $0}' | tr -s ' ' | sort -n | tail -1)
-
     logs=($line)
     date="${logs[@]:0:3}"
     hostname="${logs[3]}"
     log="${logs[@]:4}"
     log=$(echo "$log" | sed "s/'/''/g")
-    index="$((id + 1))"
+    index=$(python3 -c "import uuid; print(uuid.uuid4())")
 
     turso_exec "$database" "INSERT INTO $database (id, date, hostname, log_message) VALUES ('$index', '$date', '$hostname', '$log');"
     echo "Added: $line"
