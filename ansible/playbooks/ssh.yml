@@ -1,0 +1,18 @@
+---
+- name: Copy SSH keys
+  hosts: localhost
+  become: false
+
+  tasks:
+
+    - name: Debug
+      debug:
+        msg: "Copying SSH keys"
+  
+    - name: Copy SSH keys
+      shell: "cat ~/.ssh/id_rsa.pub | ssh {{ ansible_user }}@{{ item }} 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'"
+      with_items:
+        - pi.local
+        - node01.local
+        - node02.local
+        - node03.local
