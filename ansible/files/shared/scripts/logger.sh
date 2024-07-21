@@ -10,6 +10,11 @@ export PATH=$HOME/.turso:$PATH
 database=${1:-logs}
 timeframe=${2:-15}
 
+token=""
+chat_id=""
+
+server_name=$(hostname)
+date=$(date +"%b %d %H:%M")
 turso_path="$HOME/.turso"
 
 if [[ ! -d $turso_path ]]; then
@@ -17,11 +22,13 @@ if [[ ! -d $turso_path ]]; then
     exit 1
 fi
 
-db_exists=$(turso db list | grep "$database" | wc -l)
+is_logged_in=$(turso db list | grep "$database" | wc -l)
 
-if [[ $db_exists -eq 0 ]]; then
-    echo "Database $database does not exist. Please create it first."
-    echo "Also is possible that you are not logged in. Please login first."
+error_message="Token expired. Please login again."
+
+if [[ $is_logged_in -eq 0 ]]; then
+    curl -X POST -H "content-type: application/json" -d "{\"chat_id\": \"$chat_id\", \"text\": \"Error: $error_message\nDate: $date\nServer: $server_name\", \"disable_notification\": true}" https://api.telegram.org/bot"$token"/sendMessage
+    echo "$error_message"
     exit 1
 fi
 
