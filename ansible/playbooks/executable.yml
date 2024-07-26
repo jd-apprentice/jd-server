@@ -1,0 +1,37 @@
+---
+- name: Add an executable script to a remote host
+  hosts: node02
+  gather_facts: yes
+  vars_prompt:
+
+    - name: "script_name"
+      prompt: "Enter the script name"
+      default: "purge"
+      private: no
+
+    # - name: "add_to_path"
+    #   prompt: "Do you want to add the script to the PATH? (yes/no)"
+    #   default: "yes"
+    #   private: no
+
+    # - name: "become_pass"
+    #   prompt: "Enter the sudo password"
+    #   private: yes
+
+  tasks:
+    - name: Copy script to remote host
+      copy:
+        src: "../files/shared/scripts/{{ script_name }}.sh"
+        dest: "$HOME/scripts/{{ script_name }}.sh"
+
+    - name: Change script permissions
+      command: "chmod +x $HOME/scripts/{{ script_name }}.sh"
+
+    # - name: Make script available in PATH
+    #   command: "cp $HOME/scripts/{{ script_name }}.sh /usr/local/bin/{{ script_name }}"
+    #   become: yes
+    #   become_method: sudo
+    #   become_user: "{{ ansible_user }}"
+    #   when: add_to_path == "yes"
+    #   vars:
+    #     ansible_become_pass: "{{ become_pass }}"

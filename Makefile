@@ -1,5 +1,9 @@
 prepare: scafolding
 
+script:
+	chmod +x ansible/files/shared/scripts/$(script).sh
+	./ansible/files/shared/scripts/$(script).sh
+
 playbook:
 	ansible-playbook -i ansible/inventory/hosts ansible/playbooks/$(playbook).yml
 
