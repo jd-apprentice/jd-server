@@ -25,4 +25,10 @@ jobs:
       - name: Snyk IaC test and report
         run: |
           snyk auth ${{ secrets.SNYK_TOKEN }}
-          snyk iac test --report || true
+          snyk iac test terraform/ --report --sarif-file-output=snyk.sarif || true
+
+      - name: Upload Snyk SARIF report
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: snyk.sarif
+          category: snyk-terraform

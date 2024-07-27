@@ -7,7 +7,7 @@ on:
     paths:
       - "ansible/files/node01/**"
       - "terraform/**"
-      - ".github/workflows/node01.yml"
+      - ".github/workflows/*.yml"
 
 env:
   NODE01_DOCKER_PATH: /home/${{ secrets.USER }}/www
