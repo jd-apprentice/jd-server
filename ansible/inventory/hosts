@@ -21,3 +21,11 @@ node02.local
 ansible_ssh_user=
 ansible_ssh_pass=
 ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[node03]
+node03.local
+
+[node03:vars]
+ansible_ssh_user=
+ansible_ssh_pass=
+ansible_ssh_private_key_file=~/.ssh/id_rsa

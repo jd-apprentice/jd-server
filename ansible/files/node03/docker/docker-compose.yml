@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+
+  opengist:
+    image: ghcr.io/thomiceli/opengist:1.7
+    deploy:
+      replicas: 3
+      placement:
+        max_replicas_per_node: 1
+    ports:
+      - "6157:6157" # HTTP port
+    volumes:
+      - type: volume
+        source: shared
+        target: /var/nfs/swarm
+        volume:
+          nocopy: true
+
+volumes:
+  shared:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=node03.local,nolock,soft,rw
+      device: ":/var/nfs/swarm"
