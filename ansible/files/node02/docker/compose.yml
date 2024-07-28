@@ -4,9 +4,10 @@ services:
 
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
+    security_opt:
+      - no_new_privileges:true
+      - seccomp:unconfined
     container_name: homepage
-    mem_limit: 50m
-    memswap_limit: 100m
     restart: unless-stopped
     ports:
       - 4000:3000
@@ -19,6 +20,9 @@ services:
 
   dashdot:
     image: mauricenino/dashdot
+    security_opt:
+      - no_new_privileges:true
+      - seccomp:unconfined
     restart: unless-stopped
     ports:
       - "3001:3001"
@@ -33,6 +37,9 @@ services:
 
   dozzle:
     container_name: dozzle
+    security_opt:
+      - no_new_privileges:true
+      - seccomp:unconfined
     image: amir20/dozzle:latest
     restart: unless-stopped
     volumes:

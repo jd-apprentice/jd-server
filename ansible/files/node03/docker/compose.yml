@@ -1,6 +1,10 @@
 services:
   docker-socket-proxy:
     image: tecnativa/docker-socket-proxy
+    user: 61000:61000
+    security_opt:
+      - no_new_privileges:true
+      - seccomp:unconfined
     privileged: true
     restart: unless-stopped
     environment:

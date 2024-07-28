@@ -1,21 +1,37 @@
-version: "3.8"
+# https://dev.to/nownabe/secure-user-in-docker-1b5m
+# https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html
+# https://forums.docker.com/t/docker-swarm-limit-ressources/113959/3
+# https://stackoverflow.com/questions/45282608/how-to-directly-mount-nfs-share-volume-in-container-using-docker-compose-v3
 
 services:
 
   opengist:
     image: ghcr.io/thomiceli/opengist:1.7
+    user: 61000:61000
+    security_opt:
+      - no_new_privileges:true
+      - seccomp:unconfined
     deploy:
       replicas: 3
       placement:
         max_replicas_per_node: 1
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50m
     ports:
-      - "6157:6157" # HTTP port
+      - "6157:6157"
     volumes:
       - type: volume
         source: shared
         target: /var/nfs/swarm
         volume:
           nocopy: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 volumes:
   shared:
