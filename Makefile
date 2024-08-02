@@ -11,4 +11,4 @@ scafolding:
 	$(MAKE) playbook playbook=scafolding
 
 action:
-	cd terraform && terraform $(action) -var-file=config/$(environment).tfvars
+	cd terraform && terraform $(action) -var-file=config/$(environment).tfvars -compact-warnings
