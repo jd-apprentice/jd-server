@@ -1,12 +1,33 @@
 services:
+  nc:
+    image: nextcloud:apache
+    restart: always
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=
+      - POSTGRES_USER=
+    ports:
+      - 8080:80
+    volumes:
+      - nc_data:/var/www/html
+
+  db:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=
+      - POSTGRES_USER=
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+
   docker-socket-proxy:
     image: tecnativa/docker-socket-proxy
-    user: 61000:61000
-    security_opt:
-      - no_new_privileges:true
-      - seccomp:unconfined
+    restart: always
     privileged: true
-    restart: unless-stopped
     environment:
       CONTAINERS: 1
       INFO: 1
@@ -14,3 +35,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "2375:2375"
+
+  dashdot:
+    image: mauricenino/dashdot
+    restart: always
+    ports:
+      - "3001:3001"
+    volumes:
+      - "/:/mnt/host:ro"
+    privileged: true
+    environment:
+      DASHDOT_ENABLE_CPU_TEMPS: "true"

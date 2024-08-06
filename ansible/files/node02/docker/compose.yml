@@ -1,14 +1,10 @@
 version: "3.8"
 
 services:
-
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
-    security_opt:
-      - no_new_privileges:true
-      - seccomp:unconfined
     container_name: homepage
-    restart: unless-stopped
+    restart: always
     ports:
       - 4000:3000
     volumes:
@@ -16,39 +12,33 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       lan:
-         ipv4_address: 10.5.0.9
+        ipv4_address: 10.5.0.9
 
   dashdot:
     image: mauricenino/dashdot
-    security_opt:
-      - no_new_privileges:true
-      - seccomp:unconfined
-    restart: unless-stopped
+    restart: always
     ports:
       - "3001:3001"
     volumes:
       - "/:/mnt/host:ro"
     privileged: true
     environment:
-      DASHDOT_ENABLE_CPU_TEMPS: 'true'
+      DASHDOT_ENABLE_CPU_TEMPS: "true"
     networks:
       lan:
-         ipv4_address: 10.5.0.11
+        ipv4_address: 10.5.0.11
 
   dozzle:
     container_name: dozzle
-    security_opt:
-      - no_new_privileges:true
-      - seccomp:unconfined
     image: amir20/dozzle:latest
-    restart: unless-stopped
+    restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - 8888:8080
     environment:
       DOZZLE_HOSTNAME: node02.local
-      DOZZLE_REMOTE_HOST: tcp://192.168.0.251:2375|node01.local, tcp://192.168.0.253:2375|node00.local
+      DOZZLE_REMOTE_HOST: tcp://192.168.0.251:2375|node01.local,tcp://192.168.0.253:2375|node00.local,tcp://192.168.0.242:2375|node03.local,tcp://192.168.0.7:2375
 
 networks:
   lan:

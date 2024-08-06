@@ -1,24 +1,24 @@
-version: '3.8'
+version: "3.8"
 
 services:
   dashdot:
     image: mauricenino/dashdot
-    restart: unless-stopped
+    restart: always
     ports:
       - "3001:3001"
     volumes:
       - "/:/mnt/host:ro"
     privileged: true
     environment:
-      DASHDOT_ENABLE_CPU_TEMPS: 'true'
+      DASHDOT_ENABLE_CPU_TEMPS: "true"
     networks:
       lan:
-         ipv4_address: 10.5.0.11
+        ipv4_address: 10.5.0.11
 
   ## https://dozzle.dev/guide/remote-hosts#connecting-with-a-socket-proxy
   docker-socket-proxy:
     image: tecnativa/docker-socket-proxy
-    restart: unless-stopped
+    restart: always
     privileged: true
     environment:
       CONTAINERS: 1
@@ -30,7 +30,7 @@ services:
 
 networks:
   lan:
-   ipam:
-    config:
-      - subnet: 10.5.0.0/16
-        gateway: 10.5.0.1
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1

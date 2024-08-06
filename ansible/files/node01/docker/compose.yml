@@ -1,25 +1,24 @@
 version: "3.8"
 
 services:
-
   dashdot:
     image: mauricenino/dashdot
-    restart: unless-stopped
+    restart: always
     ports:
       - "3001:3001"
     volumes:
       - "/:/mnt/host:ro"
     privileged: true
     environment:
-      DASHDOT_ENABLE_CPU_TEMPS: 'true'
+      DASHDOT_ENABLE_CPU_TEMPS: "true"
     networks:
       lan:
-         ipv4_address: 10.5.0.11
+        ipv4_address: 10.5.0.11
 
   docker-socket-proxy:
     image: tecnativa/docker-socket-proxy
     privileged: true
-    restart: unless-stopped
+    restart: always
     environment:
       CONTAINERS: 1
       INFO: 1
