@@ -22,7 +22,7 @@ env:
 
 jobs:
   operation:
-    uses: ./node-operation.yml
+    uses: ./.github/workflows/node-operation.yml
     with:
       node-name: ${{ env.NODE_NAME }}
       runs-on: self-hosted
