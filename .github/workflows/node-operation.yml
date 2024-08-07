@@ -15,6 +15,11 @@ on:
         default: docker-socket-proxy
         required: false
         type: string
+    secrets:
+      telegram_token:
+        required: true
+      telegram_to:
+        required: true
 
 env:
   NODE_DOCKER_PATH: /home/${{ secrets.USER }}/www
@@ -87,5 +92,5 @@ jobs:
       name: Telegram Notification
 
     secrets:
-      envTOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-      envTO: ${{ secrets.TELEGRAM_TO }}
+      envTOKEN: ${{ secrets.telegram_token }}
+      envTO: ${{ secrets.telegram_to }}

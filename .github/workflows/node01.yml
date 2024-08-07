@@ -26,3 +26,6 @@ jobs:
     with:
       node-name: node01
       runs-on: self-hosted
+    secrets:
+      telegram_token: ${{ secrets.TELEGRAM_TOKEN }}
+      telegram_to: ${{ secrets.TELEGRAM_TO }}
