@@ -21,38 +21,6 @@ env:
   NODE_CRONJOB_PATH: /var/spool/cron/crontabs/${{ secrets.USER }}
 
 jobs:
-  telegram:
-    needs: [deploy, delete]
-    if: ${{ always() }}
-    uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
-    with:
-      message: |
-        _📚 Action Details_
-
-        📝 Event Name: ${{ github.event_name }}
-
-        _📚 Commit Details_
-
-        📝 Actor: ${{ github.actor }}
-        📝 Commit Message: ${{ github.event.head_commit.message }}
-        📝 Commit Url: ${{ github.event.head_commit.url }}
-
-        _📚 Repository Details_
-
-        📝 Repository Name: ${{ github.repository }}
-        📝 Repository Url: ${{ github.event.repository.url }}
-
-        _📚 Workflow Details_
-
-        📝 Workflow Name: ${{ github.workflow }} on ${{ inputs.node-name }}
-
-      runs-on: ubuntu-latest
-      name: Telegram Notification
-
-    secrets:
-      envTOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-      envTO: ${{ secrets.TELEGRAM_TO }}
-
   delete:
     runs-on: ${{ inputs.runs-on }}
     if: contains(github.event.head_commit.message, 'delete') && !github.event_name == 'pull request'
@@ -89,3 +57,35 @@ jobs:
           echo "Cleanup files"
           rm -rf jd-server/*
           rm -rf ansible/files/${{ inputs.node-name }}/*
+
+  telegram:
+    needs: [deploy, delete]
+    if: ${{ always() }}
+    uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
+    with:
+      message: |
+        _📚 Action Details_
+
+        📝 Event Name: ${{ github.event_name }}
+
+        _📚 Commit Details_
+
+        📝 Actor: ${{ github.actor }}
+        📝 Commit Message: ${{ github.event.head_commit.message }}
+        📝 Commit Url: ${{ github.event.head_commit.url }}
+
+        _📚 Repository Details_
+
+        📝 Repository Name: ${{ github.repository }}
+        📝 Repository Url: ${{ github.event.repository.url }}
+
+        _📚 Workflow Details_
+
+        📝 Workflow Name: ${{ github.workflow }} on ${{ inputs.node-name }}
+
+      runs-on: ubuntu-latest
+      name: Telegram Notification
+
+    secrets:
+      envTOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+      envTO: ${{ secrets.TELEGRAM_TO }}
