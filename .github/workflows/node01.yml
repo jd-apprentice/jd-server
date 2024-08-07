@@ -24,5 +24,5 @@ jobs:
   operation:
     uses: ./.github/workflows/node-operation.yml
     with:
-      node-name: ${{ env.NODE_NAME }}
+      node-name: node01
       runs-on: self-hosted
