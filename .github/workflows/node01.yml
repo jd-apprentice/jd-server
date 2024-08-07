@@ -3,86 +3,26 @@ name: Node01
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [node01/*]
     paths:
       - "ansible/files/node01/**"
-      - "terraform/**"
-      - ".github/workflows/*.yml"
-
-env:
-  NODE01_DOCKER_PATH: /home/${{ secrets.USER }}/www
-  NODE01_CRONJOB_PATH: /var/spool/cron/crontabs/${{ secrets.USER }}
+      - ".github/workflows/node01.yml"
+  pull_request:
+    branches: [node01/*]
+    paths:
+      - "ansible/files/node01/**"
+      - ".github/workflows/node01.yml"
 
 permissions:
   actions: write
   contents: write
 
-jobs:   
-  telegram:
-    needs: [deploy, delete]
-    if: ${{ always() }}
-    uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
+env:
+  NODE_NAME: node01
+
+jobs:
+  operation:
+    uses: ./node-operation.yml
     with:
-      message: |
-        _📚 Action Details_
-
-        📝 Event Name: ${{ github.event_name }}
-
-        _📚 Commit Details_
-
-        📝 Actor: ${{ github.actor }}
-        📝 Commit Message: ${{ github.event.head_commit.message }}
-        📝 Commit Url: ${{ github.event.head_commit.url }}
-
-        _📚 Repository Details_
-
-        📝 Repository Name: ${{ github.repository }}
-        📝 Repository Url: ${{ github.event.repository.url }}
-
-        _📚 Workflow Details_
-
-        📝 Workflow Name: ${{ github.workflow }}
-
-      runs-on: ubuntu-latest
-      name: Telegram Notification
-
-    secrets:
-      envTOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-      envTO: ${{ secrets.TELEGRAM_TO }}
-  
-  delete:
-    runs-on: self-hosted
-    if: contains(github.event.head_commit.message, 'delete')
-    steps:
-      - name: Delete docker
-        run: |
-          echo "Deleting docker files from node01 server"
-          docker compose -f ${{ env.NODE01_DOCKER_PATH }}/compose.yml stop ${{ vars.SERVICE }}
-          docker system prune --all
-  
-  deploy:
-    runs-on: self-hosted
-    if: contains(github.event.head_commit.message, 'deploy')
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup docker
-        if: contains(github.event.head_commit.message, 'docker')
-        run: |
-          echo "Copying docker files to node01 server"
-          cp -r ansible/files/node01/docker/* ${{ env.NODE01_DOCKER_PATH }}
-          docker compose -f ${{ env.NODE01_DOCKER_PATH }}/compose.yml up -d
-
-      - name: Setup cronjob
-        if: contains(github.event.head_commit.message, 'cronjob')
-        run: |
-          echo "Copying cronjob files to node01 server"
-          mv ansible/files/node01/jobs/cron ${{ secrets.USER }}
-          echo ${{ secrets.USERPASSWD }} | sudo -S cp ansible/files/node01/jobs/${{ secrets.USER }} ${{ env.NODE01_CRONJOB_PATH }}
-
-      - name: Cleanup
-        run: |
-          echo "Cleanup files"
-          rm -rf jd-server/*
-          rm -rf ansible/files/node01/*
+      node-name: ${{ env.NODE_NAME }}
+      runs-on: self-hosted
