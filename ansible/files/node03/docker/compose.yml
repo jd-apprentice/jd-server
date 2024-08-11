@@ -36,13 +36,20 @@ services:
     ports:
       - "2375:2375"
 
+  ## https://docs.docker.com/engine/security/apparmor/
+  ## https://docs.docker.com/engine/security/seccomp/
+  ## https://github.com/moby/moby/blob/master/profiles/seccomp/default.json
   dashdot:
     image: mauricenino/dashdot
+    user: 1000:1000
     restart: always
+    security_opt:
+      - seccomp:./default.json
+      - no-new-privileges:true
     ports:
       - "3001:3001"
     volumes:
       - "/:/mnt/host:ro"
     privileged: true
     environment:
-      DASHDOT_ENABLE_CPU_TEMPS: "true"
+      DASHDOT_ENABLE_CPU_TEMPS: 'true'
