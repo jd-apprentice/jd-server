@@ -2,6 +2,10 @@
 - name: Copy SSH keys
   hosts: localhost
   become: false
+  vars_prompt:
+    - name: "ansible_user"
+      prompt: "Enter the ansible user"
+      private: no
 
   tasks:
 
