@@ -1,3 +1,5 @@
+environment ?= prod
+
 prepare: scafolding
 
 script:
@@ -9,6 +11,9 @@ playbook:
 
 scafolding:
 	$(MAKE) playbook playbook=scafolding
+
+init:
+	cd terraform && terraform init -var-file=config/$(environment).tfvars
 
 action:
 	cd terraform && terraform $(action) -var-file=config/$(environment).tfvars -compact-warnings
