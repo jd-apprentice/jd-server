@@ -2,6 +2,13 @@ module "cloudflare" {
   source = "./cloudflare"
 }
 
+variable "aws_dynanodb_table_name" {}
+variable "aws_dynanodb_table_arn" {}
+variable "aws_lambda_function_arn" {}
+variable "aws_lambda_function_name" {}
+variable "aws_queue_url" {}
+variable "aws_topic_arn" {}
+
 module "aws" {
   source = "./aws"
 }
@@ -10,7 +17,7 @@ variable "nodes" {
   type = map(object({
     ssh_user = string
     node_host = string
-    create_homepage = bool
+    is_home = bool
   }))
 }
 
@@ -19,7 +26,7 @@ module "node00" {
     
     ssh_user = var.nodes["node00"].ssh_user
     node_host = var.nodes["node00"].node_host
-    create_homepage = var.nodes["node00"].create_homepage
+    is_home = var.nodes["node00"].is_home
 }
 
 module "node01" {
@@ -27,7 +34,7 @@ module "node01" {
     
     ssh_user = var.nodes["node01"].ssh_user
     node_host = var.nodes["node01"].node_host
-    create_homepage = var.nodes["node01"].create_homepage
+    is_home = var.nodes["node01"].is_home
 }
 
 module "node02" {
@@ -35,5 +42,5 @@ module "node02" {
     
     ssh_user = var.nodes["node02"].ssh_user
     node_host = var.nodes["node02"].node_host
-    create_homepage = var.nodes["node02"].create_homepage
+    is_home = var.nodes["node02"].is_home
 }

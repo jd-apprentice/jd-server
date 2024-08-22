@@ -16,4 +16,4 @@ init:
 	cd terraform && terraform init -var-file=config/$(environment).tfvars
 
 action:
-	cd terraform && terraform $(action) -var-file=config/$(environment).tfvars -compact-warnings
+	cd terraform && terraform $(action) -var-file=config/$(environment).tfvars

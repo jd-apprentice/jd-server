@@ -3,6 +3,10 @@ version: "3.8"
 services:
   dashdot:
     image: mauricenino/dashdot
+    user: 1000:1000
+    security_opt:
+      - seccomp:~/security/default.json
+      - no-new-privileges:true
     restart: always
     ports:
       - "3001:3001"
@@ -11,26 +15,19 @@ services:
     privileged: true
     environment:
       DASHDOT_ENABLE_CPU_TEMPS: "true"
-    networks:
-      lan:
-        ipv4_address: 10.5.0.11
 
   ## https://dozzle.dev/guide/remote-hosts#connecting-with-a-socket-proxy
   docker-socket-proxy:
     image: tecnativa/docker-socket-proxy
-    restart: always
     privileged: true
+    restart: always
     environment:
       CONTAINERS: 1
       INFO: 1
+      TASKS: 1
+      POSTS: 0
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - "2375:2375"
 
-networks:
-  lan:
-    ipam:
-      config:
-        - subnet: 10.5.0.0/16
-          gateway: 10.5.0.1

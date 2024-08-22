@@ -10,9 +10,9 @@ variable "node_host" {
     sensitive = true
 }
 
-variable "create_homepage" {
-  description = "Whether to create the homepage"
+variable "is_home" {
+  description = "Is this a home node?"
   type        = bool
-  default = true
+  default = false
   sensitive = false
 }

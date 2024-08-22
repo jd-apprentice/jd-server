@@ -1,9 +1,13 @@
+volumes:
+  db_data:
+  nc_data:
+
 services:
   nc:
     image: nextcloud:apache
     restart: always
     environment:
-      - POSTGRES_HOST=db
+      - POSTGRES_HOST=
       - POSTGRES_PASSWORD=
       - POSTGRES_DB=
       - POSTGRES_USER=
@@ -31,20 +35,19 @@ services:
     environment:
       CONTAINERS: 1
       INFO: 1
+      TASKS: 1
+      POSTS: 0
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - "2375:2375"
 
-  ## https://docs.docker.com/engine/security/apparmor/
-  ## https://docs.docker.com/engine/security/seccomp/
-  ## https://github.com/moby/moby/blob/master/profiles/seccomp/default.json
   dashdot:
     image: mauricenino/dashdot
     user: 1000:1000
     restart: always
     security_opt:
-      - seccomp:./default.json
+      - seccomp:~/security/default.json
       - no-new-privileges:true
     ports:
       - "3001:3001"
@@ -53,3 +56,30 @@ services:
     privileged: true
     environment:
       DASHDOT_ENABLE_CPU_TEMPS: 'true'
+
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    user: 1000:1000
+    container_name: homepage
+    restart: always
+    security_opt:
+      - seccomp:~/security/default.json
+      - no-new-privileges:true
+    ports:
+      - 4000:3000
+    volumes:
+      - ./links/config:/app/config
+
+  dozzle:
+    container_name: dozzle
+    user: 1000:1000
+    image: amir20/dozzle:latest
+    security_opt:
+      - seccomp:~/security/default.json
+      - no-new-privileges:true
+    restart: always
+    ports:
+      - 8888:8080
+    environment:
+      DOZZLE_HOSTNAME: localhost
+      DOZZLE_REMOTE_HOST: tcp://192.168.0.251:2375|node01.local,tcp://192.168.0.253:2375|node00.local,tcp://192.168.0.150:2375|node02.local,tcp://192.168.0.242:2375|node03.local
