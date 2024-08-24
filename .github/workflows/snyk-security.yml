@@ -2,19 +2,17 @@ name: Snyk Security
 
 on:
   workflow_run:
-    workflows: ["Node01"]
+    workflows: ["Node Operation"]
     types:
       - completed
 
 permissions:
   contents: read
+  actions: read
+  security-events: write
 
 jobs:
   snyk:
-    permissions:
-      contents: read
-      actions: read
-      security-events: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,3 +32,34 @@ jobs:
         with:
           sarif_file: snyk.sarif
           category: snyk-terraform
+
+  telegram:
+    needs: [snyk]
+    uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
+    with:
+      message: |
+        _📚 Action Details_
+
+        📝 Event Name: ${{ github.event_name }}
+
+        _📚 Commit Details_
+
+        📝 Actor: ${{ github.actor }}
+        📝 Commit Message: ${{ github.event.head_commit.message }}
+        📝 Commit Url: ${{ github.event.head_commit.url }}
+
+        _📚 Repository Details_
+
+        📝 Repository Name: ${{ github.repository }}
+        📝 Repository Url: ${{ github.event.repository.url }}
+
+        _📚 Workflow Details_
+
+        📝 Workflow Name: ${{ github.workflow }}
+
+      runs-on: ubuntu-latest
+      name: Telegram Notification
+
+    secrets:
+      envTOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+      envTO: ${{ secrets.TELEGRAM_TO }}

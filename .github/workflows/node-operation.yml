@@ -1,0 +1,96 @@
+name: Node Operation
+
+on:
+  workflow_call:
+    inputs:
+      runs-on:
+        default: self-hosted
+        required: true
+        type: string
+      node-name:
+        default: node01
+        required: true
+        type: string
+      service:
+        default: docker-socket-proxy
+        required: false
+        type: string
+    secrets:
+      telegram_token:
+        required: true
+      telegram_to:
+        required: true
+
+env:
+  NODE_DOCKER_PATH: /home/${{ secrets.USER }}/www
+  NODE_CRONJOB_PATH: /var/spool/cron/crontabs/${{ secrets.USER }}
+
+jobs:
+  delete:
+    runs-on: ${{ inputs.runs-on }}
+    if: contains(github.event.head_commit.message, 'delete') && !github.event_name == 'pull request'
+    steps:
+      - name: Delete service ${{ inputs.service }} from ${{ inputs.node-name }} server
+        run: |
+          echo "Deleting docker files from ${{ inputs.node-name }} server"
+          docker compose -f ${{ env.NODE_DOCKER_PATH }}/compose.yml stop ${{ inputs.service }}
+          docker system prune --all
+
+  deploy:
+    runs-on: ${{ inputs.runs-on }}
+    if: contains(github.event.head_commit.message, 'deploy') && !github.event_name == 'pull request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup docker
+        if: contains(github.event.head_commit.message, 'docker')
+        run: |
+          echo "Copying docker files to ${{ inputs.node-name }} server"
+          cp -r ansible/files/${{ inputs.node-name }}/docker/* ${{ env.NODE_DOCKER_PATH }}
+          docker compose -f ${{ env.NODE_DOCKER_PATH }}/compose.yml up -d
+
+      - name: Setup cronjob
+        if: contains(github.event.head_commit.message, 'cronjob')
+        run: |
+          echo "Copying cronjob files to ${{ inputs.node-name }} server"
+          mv ansible/files/${{ inputs.node-name}}/jobs/cron ${{ secrets.USER }}
+          echo ${{ secrets.USERPASSWD }} | sudo -S cp ansible/files/${{ inputs.node-name }}/jobs/${{ secrets.USER }} ${{ env.NODE_CRONJOB_PATH }}
+
+      - name: Cleanup
+        run: |
+          echo "Cleanup files"
+          rm -rf jd-server/*
+          rm -rf ansible/files/${{ inputs.node-name }}/*
+
+  telegram:
+    needs: [deploy, delete]
+    if: ${{ always() }}
+    uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
+    with:
+      message: |
+        _📚 Action Details_
+
+        📝 Event Name: ${{ github.event_name }}
+
+        _📚 Commit Details_
+
+        📝 Actor: ${{ github.actor }}
+        📝 Commit Message: ${{ github.event.head_commit.message }}
+        📝 Commit Url: ${{ github.event.head_commit.url }}
+
+        _📚 Repository Details_
+
+        📝 Repository Name: ${{ github.repository }}
+        📝 Repository Url: ${{ github.event.repository.url }}
+
+        _📚 Workflow Details_
+
+        📝 Workflow Name: ${{ github.workflow }} on ${{ inputs.node-name }}
+
+      runs-on: ubuntu-latest
+      name: Telegram Notification
+
+    secrets:
+      envTOKEN: ${{ secrets.telegram_token }}
+      envTO: ${{ secrets.telegram_to }}
