@@ -26,6 +26,7 @@ env:
   NODE_CRONJOB_PATH: /var/spool/cron/crontabs/${{ secrets.USER }}
 
 jobs:
+  
   delete:
     runs-on: ${{ inputs.runs-on }}
     if: contains(github.event.head_commit.message, 'delete') && !github.event_name == 'pull request'
