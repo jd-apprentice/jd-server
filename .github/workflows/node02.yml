@@ -1,18 +1,18 @@
-name: Node01
+name: Node02
 
 on:
   workflow_dispatch:
   push:
-    branches: [node01/*]
+    branches: [node02/*]
     paths:
-      - "ansible/files/node01/**"
-      - ".github/workflows/node01.yml"
+      - "ansible/files/node02/**"
+      - ".github/workflows/node02.yml"
       - "terraform/homelab/*"
   pull_request:
-    branches: [node01/*]
+    branches: [node02/*]
     paths:
-      - "ansible/files/node01/**"
-      - ".github/workflows/node01.yml"
+      - "ansible/files/node02/**"
+      - ".github/workflows/node02.yml"
       - "terraform/homelab/*"
 
 permissions:
@@ -20,13 +20,13 @@ permissions:
   contents: write
 
 env:
-  NODE_NAME: node01
+  NODE_NAME: node02
 
 jobs:
   operation:
     uses: ./.github/workflows/node-operation.yml
     with:
-      node-name: node01
+      node-name: node02
       runs-on: self-hosted
     secrets:
       telegram_token: ${{ secrets.TELEGRAM_TOKEN }}
