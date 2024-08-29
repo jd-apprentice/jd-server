@@ -2,41 +2,23 @@
 # https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html
 # https://forums.docker.com/t/docker-swarm-limit-ressources/113959/3
 # https://stackoverflow.com/questions/45282608/how-to-directly-mount-nfs-share-volume-in-container-using-docker-compose-v3
+# https://dozzle.dev/guide/swarm-mode
 
 services:
 
-  opengist:
-    image: ghcr.io/thomiceli/opengist:1.7
-    user: 61000:61000
-    security_opt:
-      - no_new_privileges:true
-      - seccomp:unconfined
-    deploy:
-      replicas: 3
-      placement:
-        max_replicas_per_node: 1
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 50m
-    ports:
-      - "6157:6157"
+  dozzle:
+    image: amir20/dozzle:latest
+    environment:
+      - DOZZLE_MODE=swarm
     volumes:
-      - type: volume
-        source: shared
-        target: /var/nfs/swarm
-        volume:
-          nocopy: true
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8888:8080
+    networks:
+      - dozzle
+    deploy:
+      mode: global
 
-volumes:
-  shared:
-    driver: local
-    driver_opts:
-      type: nfs
-      o: addr=node03.local,nolock,soft,rw
-      device: ":/var/nfs/swarm"
+networks:
+  dozzle:
+    driver: overlay

@@ -37,27 +37,42 @@ sudo mount <manager_ip>:/var/nfs/swarm /mnt/swarm
 Create a `compose.yml` file:
 
 ```yaml
-version: "3.8"
-
 services:
 
   opengist:
     image: ghcr.io/thomiceli/opengist:1.7
+    user: 61000:61000
+    security_opt:
+      - no_new_privileges:true
+      - seccomp:unconfined
     deploy:
       replicas: 3
       placement:
         max_replicas_per_node: 1
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50m
     ports:
-      - "6157:6157" # HTTP port
+      - "6157:6157"
     volumes:
-      - "/var/nfs/swarm:/opengist"
+      - type: volume
+        source: shared
+        target: /var/nfs/swarm
+        volume:
+          nocopy: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 volumes:
   shared:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=node03.local,rw
+      o: addr=node03.local,nolock,soft,rw
       device: ":/var/nfs/swarm"
 ```
 

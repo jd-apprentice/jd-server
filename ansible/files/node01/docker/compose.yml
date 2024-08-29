@@ -14,17 +14,4 @@ services:
     environment:
       DASHDOT_ENABLE_CPU_TEMPS: "true"
 
-  docker-socket-proxy:
-    image: tecnativa/docker-socket-proxy
-    privileged: true
-    restart: always
-    environment:
-      CONTAINERS: 1
-      INFO: 1
-      TASKS: 1
-      POSTS: 0
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    ports:
-      - "2375:2375"
 

@@ -1,47 +1,4 @@
-volumes:
-  db_data:
-  nc_data:
-
 services:
-  nc:
-    image: nextcloud:apache
-    restart: always
-    environment:
-      - POSTGRES_HOST=
-      - POSTGRES_PASSWORD=
-      - POSTGRES_DB=
-      - POSTGRES_USER=
-    ports:
-      - 8080:80
-    volumes:
-      - nc_data:/var/www/html
-
-  db:
-    image: postgres:alpine
-    environment:
-      - POSTGRES_PASSWORD=
-      - POSTGRES_DB=
-      - POSTGRES_USER=
-    restart: always
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    expose:
-      - 5432
-
-  docker-socket-proxy:
-    image: tecnativa/docker-socket-proxy
-    restart: always
-    privileged: true
-    environment:
-      CONTAINERS: 1
-      INFO: 1
-      TASKS: 1
-      POSTS: 0
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    ports:
-      - "2375:2375"
-
   dashdot:
     image: mauricenino/dashdot
     user: 1000:1000
@@ -69,17 +26,31 @@ services:
       - 4000:3000
     volumes:
       - ./links/config:/app/config
-
-  dozzle:
-    container_name: dozzle
-    user: 1000:1000
-    image: amir20/dozzle:latest
-    security_opt:
-      - seccomp:~/security/default.json
-      - no-new-privileges:true
-    restart: always
+  
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
     ports:
-      - 8888:8080
+      - '80:80'
     environment:
-      DOZZLE_HOSTNAME: localhost
-      DOZZLE_REMOTE_HOST: tcp://192.168.0.251:2375|node01.local,tcp://192.168.0.253:2375|node00.local,tcp://192.168.0.150:2375|node02.local,tcp://192.168.0.242:2375|node03.local
+      DEFAULT_HOST: dns.jonathan.com.ar
+    volumes:
+      - '/var/run/docker.sock:/tmp/docker.sock'
+    restart: always
+
+  pihole:
+    image: pihole/pihole:latest
+    ports:
+      - '53:53/tcp'
+      - '53:53/udp'
+      - "67:67/udp"
+      - '8053:80/tcp'
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    environment:
+      PROXY_LOCATION: pihole
+      VIRTUAL_HOST: dns.jonathan.com.ar
+      VIRTUAL_PORT: 80
+    extra_hosts:
+      - 'jonathan.com.ar:192.168.0.242'
+    restart: always
