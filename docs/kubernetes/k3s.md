@@ -130,7 +130,8 @@ reboot
 
 To have separate deployments we can do something like this
 
-```yml
+```yaml
+# infobae-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -193,4 +194,26 @@ NAME                                  READY   STATUS    RESTARTS   AGE
 infobae-api-master-5f4894dd7f-7mlw5   1/1     Running   0          26m
 infobae-api-master-5f4894dd7f-mmz6z   1/1     Running   0          23m
 infobae-api-worker-5f4894dd7f-62vxg   1/1     Running   0          12m
+
+dyallo@node03:~/www/k3s/infobae $ kubectl get services
+NAME          TYPE           CLUSTER-IP      EXTERNAL-IP                   PORT(S)          AGE
+infobae-api   LoadBalancer   10.43.194.206   192.168.0.150,192.168.0.242   3000:32581/TCP   33m
+kubernetes    ClusterIP      10.43.0.1       <none>
+```
+
+Now if we do a request to any of the external IPs we should see the LoadBalancer working
+
+```shell
+dyallo@node03:~/www/k3s/infobae $ curl --silent 192.168.0.242:3000/api/infobae | jq
+{
+  "lastmod": "2024-09-01T19:26:26.101Z",
+  "link": "https://www.infobae.com/mexico/2024/08/31/tragedia-en-jiutepec-tres-ninos-murieron-por-derrumbe-tras-fuertes-lluvias-en-morelos/",
+  "hostname": "infobae-api-worker-78bfd84f84-vjkx9"
+}
+dyallo@node03:~/www/k3s/infobae $ curl --silent 192.168.0.242:3000/api/infobae | jq
+{
+  "lastmod": "2024-09-01T19:26:26.101Z",
+  "link": "https://www.infobae.com/mexico/2024/08/31/tragedia-en-jiutepec-tres-ninos-murieron-por-derrumbe-tras-fuertes-lluvias-en-morelos/",
+  "hostname": "infobae-api-master-d8fcffbd-h9f9r"
+}
 ```

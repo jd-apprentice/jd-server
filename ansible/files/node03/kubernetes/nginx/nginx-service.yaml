@@ -1,0 +1,12 @@
+## Not used at the moment
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-reverse-proxy
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: nginx-reverse-proxy
