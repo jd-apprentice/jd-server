@@ -1,0 +1,14 @@
+services:
+
+  infobae_api:
+    image: dyallo/infobae_api
+    ports:
+      - 3000:3000
+    networks:
+      - infobae
+    deploy:
+      mode: global
+
+networks:
+  infobae:
+    driver: overlay

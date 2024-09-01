@@ -1,4 +1,5 @@
 services:
+
   dashdot:
     image: mauricenino/dashdot
     user: 1000:1000

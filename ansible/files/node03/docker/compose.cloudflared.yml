@@ -1,0 +1,16 @@
+services:
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run --token {{ cloudflare_tunnel_token }}
+    deploy:
+      replicas: 2
+      placement:
+        constraints:
+          - node.role == manager
+    networks:
+      - cloudflared
+
+networks:
+  cloudflared:
+    driver: overlay
