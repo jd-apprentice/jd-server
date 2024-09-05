@@ -217,3 +217,33 @@ dyallo@node03:~/www/k3s/infobae $ curl --silent 192.168.0.242:3000/api/infobae |
   "hostname": "infobae-api-master-d8fcffbd-h9f9r"
 }
 ```
+
+## Disable Programming
+
+Once we have our k3s cluster running we can disable scheduling on the nodes (master for example)
+
+```shell
+kubectl cordon node03
+kubectl get nodes -o wide
+NAME     STATUS                     ROLES                  AGE     VERSION        INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION      CONTAINER-RUNTIME
+node00   Ready                      worker                 44h     v1.30.4+k3s1   192.168.0.253   <none>        Debian GNU/Linux 11 (bullseye)   6.1.21-v8+          containerd://1.7.20-k3s1
+node01   NotReady                   worker                 44h     v1.30.4+k3s1   192.168.0.251   <none>        Debian GNU/Linux 11 (bullseye)   6.1.21-v8+          containerd://1.7.20-k3s1
+node02   Ready                      worker                 3d18h   v1.30.4+k3s1   192.168.0.150   <none>        Debian GNU/Linux 11 (bullseye)   6.1.21-v8+          containerd://1.7.20-k3s1
+node03   Ready,SchedulingDisabled   control-plane,master   3d22h   v1.30.4+k3s1   192.168.0.242   <none>        Debian GNU/Linux 12 (bookworm)   6.6.31+rpt-rpi-v8   containerd://1.7.20-k3s1
+```
+
+### Do not use the control plane for deployments
+
+```shell
+k get pods -o wide
+NAME                                  READY   STATUS    RESTARTS   AGE    IP           NODE     NOMINATED NODE   READINESS GATES
+infobae-api-worker-5f4894dd7f-2tf8s   1/1     Running   0          108m   10.42.2.13   node01   <none>           <none>
+infobae-api-worker-5f4894dd7f-6j8cb   1/1     Running   0          105m   10.42.1.22   node02   <none>           <none>
+infobae-api-worker-5f4894dd7f-zvxxn   1/1     Running   0          109m   10.42.3.18   node00   <none>           <none>
+```
+
+Here my master (node03) is not in charge of any deployment.
+
+### Links
+
+-  https://k8s-docs.netlify.app/en/docs/reference/kubectl/cheatsheet/

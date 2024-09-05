@@ -3,4 +3,4 @@ CREATE TABLE logs (
     date TIMESTAMP NOT NULL,
     hostname VARCHAR(255) NOT NULL,
     log_message TEXT NOT NULL
-);
+) WITH (DATA_COMPRESSION = ROW);
