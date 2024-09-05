@@ -1,14 +1,16 @@
 ## https://github.com/marketplace/actions/setup-grafana-k6
 ## https://github.com/marketplace/actions/run-grafana-k6-tests
 
+name: K6 Performance Test
+
 on:
-    workflow_run:
-      workflows: ["Node Operation"]
-      types:
-        - completed
-    schedule:
-      - cron: '0 0 * * *'
-    workflow_dispatch:
+  workflow_run:
+    workflows: ["Node Operation"]
+    types:
+      - completed
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
   
 jobs:
     infobae:
