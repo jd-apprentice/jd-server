@@ -5,7 +5,7 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export default function() {
- const url = __ENV.TARGET_URL;
+ const url = __ENV.TARGET_URL || "https://noticias.jonathan.com.ar/api/infobae";
 
   let response = http.get(url);
   check(response, {
