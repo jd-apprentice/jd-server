@@ -21,6 +21,6 @@ jobs:
               K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
               K6_CLOUD_PROJECT_ID: ${{ secrets.K6_PROJECT_ID }}
             with:
-              path: ./performance/k6.js --env PROJECT_ID=${{ secrets.K6_PROJECT_ID }} --env TARGET_URL="https://noticias.jonathan.com.ar/api/infobae"
+              path: ./performance/*.js --env PROJECT_ID=${{ secrets.K6_PROJECT_ID }} --env TARGET_URL="https://noticias.jonathan.com.ar/api/infobae"
               cloud-comment-on-pr: true
           
