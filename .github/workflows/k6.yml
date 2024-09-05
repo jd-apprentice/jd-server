@@ -1,0 +1,26 @@
+## https://github.com/marketplace/actions/setup-grafana-k6
+## https://github.com/marketplace/actions/run-grafana-k6-tests
+
+on:
+    workflow_run:
+      workflows: ["Node Operation"]
+      types:
+        - completed
+    schedule:
+      - cron: '0 0 * * *'
+    workflow_dispatch:
+  
+jobs:
+    infobae:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+          - uses: grafana/setup-k6-action@v1
+          - uses: grafana/run-k6-action@v1
+            env:
+              K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
+              K6_CLOUD_PROJECT_ID: ${{ secrets.K6_PROJECT_ID }}
+            with:
+              path: ./performance/k6.js --env PROJECT_ID=${{ secrets.K6_PROJECT_ID }} --env TARGET_URL="https://noticias.jonathan.com.ar/api/infobae"
+              cloud-comment-on-pr: true
+          
