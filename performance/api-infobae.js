@@ -4,19 +4,6 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
-const projectID = __ENV.PROJECT_ID;
-const vus = __ENV.VUS || 10;
-const duration = __ENV.DURATION || '30s';
-
-export const options = {
-  vus,
-  duration,
-  cloud: {
-    projectID,
-    name: 'k6 Performance Test',
-  }
-};
-
 /**
  * @usage k6 cloud run performance/k6.js --env PROJECT_ID=<project-id> --env TARGET_URL=<target-url>
  * @environment VUS (default: 10)
@@ -26,7 +13,7 @@ export const options = {
  * @description K6 performance test for cloud run
  */
 export default function() {
- const url = __ENV.TARGET_URL;
+ const url = __ENV.TARGET_URL || "https://noticias.jonathan.com.ar/api/infobae";
 
   let response = http.get(url);
   check(response, {
