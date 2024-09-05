@@ -26,3 +26,6 @@ spec:
       - name: nginx-config
         configMap:
           name: nginx-config
+      securityContext:
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false

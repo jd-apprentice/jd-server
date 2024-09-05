@@ -21,6 +21,9 @@ spec:
             - containerPort: 3000
               protocol: TCP
       restartPolicy: Always
+      securityContext:
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
 
 ---
 apiVersion: apps/v1
@@ -46,3 +49,6 @@ spec:
             - containerPort: 3000
               protocol: TCP
       restartPolicy: Always
+      securityContext:
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false

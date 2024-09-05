@@ -22,3 +22,6 @@ spec:
             - containerPort: 8080
               protocol: TCP
       restartPolicy: Always
+      securityContext:
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false

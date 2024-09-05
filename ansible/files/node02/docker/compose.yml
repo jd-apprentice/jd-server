@@ -10,6 +10,5 @@ services:
       - "3001:3001"
     volumes:
       - "/:/mnt/host:ro"
-    privileged: true
     environment:
       DASHDOT_ENABLE_CPU_TEMPS: "true"
