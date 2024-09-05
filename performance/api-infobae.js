@@ -4,19 +4,6 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
-const projectID = __ENV.PROJECT_ID;
-const vus = __ENV.VUS || 10;
-const duration = __ENV.DURATION || '30s';
-
-export const options = {
-  vus,
-  duration,
-  cloud: {
-    projectID,
-    name: 'k6 Performance Test',
-  }
-};
-
 export default function() {
  const url = __ENV.TARGET_URL;
 
