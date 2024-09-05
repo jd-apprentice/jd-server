@@ -22,7 +22,7 @@ jobs:
               K6_CLOUD_PROJECT_ID: ${{ secrets.K6_PROJECT_ID }}
             with:
               path: |
-                performance/api-infobae.js --env PROJECT_ID=${{ secrets.K6_PROJECT_ID }} --env TARGET_URL="https://noticias.jonathan.com.ar/api/infobae"
+                performance/api-infobae.js
               cloud-run-locally: true
               cloud-comment-on-pr: true
               flags: --vus 10 --duration 30s
