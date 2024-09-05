@@ -23,7 +23,6 @@ jobs:
             with:
               path: |
                 performance/api-infobae.js
-              cloud-run-locally: true
               cloud-comment-on-pr: true
               flags: --vus 10 --duration 30s
           
