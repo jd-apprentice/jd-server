@@ -1,6 +1,6 @@
 ---
 - name: install docker
-  hosts: raspberry
+  hosts: all
   become: yes
 
   tasks:
