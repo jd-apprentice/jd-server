@@ -1,5 +1,15 @@
+[all]
+node00.local
+node01.local
+node02.local
+node03.local
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3.11
+ansible_ssh_private_key_file=~/.ssh/id_rsa
+
 [node00]
-pi.local
+node00.local
 
 [node00:vars]
 ansible_ssh_user=
