@@ -17,8 +17,10 @@ services:
     networks:
       - dozzle
     deploy:
-      mode: global
-
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
 networks:
   dozzle:
     driver: overlay

@@ -22,5 +22,5 @@ jobs:
           - uses: grafana/run-k6-action@v1
             with:
               path: |
-                performance/api-infobae.js
+                performance/api-*.js
           
