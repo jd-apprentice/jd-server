@@ -1,0 +1,22 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/settings
+
+#providers:
+#  openweathermap: openweathermapapikey
+#  weatherapi: weatherapiapikey
+
+layout:
+  Personal:
+    style: row
+    columns: 4
+  Apps:
+    style: row
+    columns: 4
+
+showStats: true
+hideVersion: true
+theme: dark
+background:
+  image: https://github.com/jd-apprentice/dotfiles/blob/mint/assets/wallpapers/6.jpg?raw=true
+  opacity: 50
