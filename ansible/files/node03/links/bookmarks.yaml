@@ -1,0 +1,28 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/bookmarks
+
+- Developer:
+    - Github:
+        - abbr: GH
+          icon: si-github
+          href: https://github.com/jd-apprentice
+    - HackTheBox:
+        - abbr: HTB
+          icon: si-hackthebox
+          href: https://app.hackthebox.com/profile/834305
+
+- Work:
+    - Linkedin:
+        - abbr: LI
+          icon: si-linkedin
+          href: https://www.linkedin.com/in/jonathandyallo/
+    - Email:
+        - abbr: EM
+          icon: si-protonmail
+          href: mailto:contacto@jonathan.com.ar
+- Entertainment:
+    - YouTube:
+        - abbr: YT
+          icon: si-youtube
+          href: https://youtube.com/@Piolaso
