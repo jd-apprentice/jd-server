@@ -1,0 +1,14 @@
+services:
+  dashdot:
+    image: mauricenino/dashdot
+    user: 1000:1000
+    security_opt:
+      - seccomp:~/security/default.json
+      - no-new-privileges:true
+    restart: always
+    ports:
+      - "3001:3001"
+    volumes:
+      - "/:/mnt/host:ro"
+    environment:
+      DASHDOT_ENABLE_CPU_TEMPS: "true"
