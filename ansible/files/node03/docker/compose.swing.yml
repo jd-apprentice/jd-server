@@ -1,0 +1,19 @@
+services:
+  swingmusic:
+    image: ghcr.io/swingmx/swingmusic
+    volumes:
+      - ./swing/music:/music
+      - ./swing/config:/config
+    ports:
+      - "1970:1970"
+    networks:
+      - swing
+    deploy:
+      replicas: 2
+      placement:
+         constraints:
+           - node.role == manager
+
+networks:
+  swing:
+    driver: overlay
