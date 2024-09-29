@@ -1,0 +1,57 @@
+## https://github.com/Boostport/setup-cloudflare-warp
+name: Cloudflare Auth
+
+on:
+    workflow_call:
+      inputs:
+        runs-on:
+          default: ubuntu-latest
+          required: false
+          type: string
+        name:
+          default: cloudflare-auth
+          required: false
+          type: string
+        gotify_server_url:
+          required: true
+          default: "https://push.jonathan.com.ar"
+          type: string
+        gotify_title:
+          required: true
+          default: ""
+          type: string
+        gotify_description:
+          required: true
+          default: ""
+          type: string
+        gotify_priority:
+          required: false
+          default: 1
+          type: number
+      secrets:
+        cf_warp_version:
+          required: true
+        cf_org_name:
+          required: true
+        cf_auth_client_id:
+          required: true
+        cf_auth_client_secret:
+          required: true
+        gotify_app_token:
+          required: true
+  
+jobs:
+    infobae:
+        name: ${{ inputs.name }}
+        runs-on: $${{ inputs.runs-on }}
+        steps:
+          - uses: Boostport/setup-cloudflare-warp@v1
+            with:
+                version: ${{ secrets.cf_warp_version }}
+                organization: ${{ secrets.cf_org_name }}
+                auth_client_id: ${{ secrets.cf_auth_client_id }}
+                auth_client_secret: ${{ secrets.cf_auth_client_secret }}  
+
+          - name: Gotify Notification
+            run: |
+                curl "${{ inputs.gotify_server_url }}/message?token=${{ secrets.gotify_app_token }}" -F "title=${{ inputs.gotify_title }}" -F "message=${{ inputs.gotify_description }}" -F "priority=${{ inputs.gotify_priority }}"
