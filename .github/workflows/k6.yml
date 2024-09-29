@@ -27,8 +27,8 @@ jobs:
         needs: [performance]
         uses: ./.github/workflows/cloudflare-auth.yml
         secrets:
-          cf_warp_version: ${{ secrets.CF_WARP_VERSION }}
-          cf_org_name: ${{ secrets.CF_ORG_NAME }}
+          cf_warp_version: 2024.8.3
+          cf_org_name: dyallab
           cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
           cf_auth_client_secret: ${{ secrets.CF_AUTH_CLIENT_SECRET }}
           gotify_app_token: ${{ secrets.K6_GOTIFY_TOKEN }}
