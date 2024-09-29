@@ -47,8 +47,7 @@ jobs:
         steps:
           - uses: Boostport/setup-cloudflare-warp@v1
             with:
-                version: ${{ secrets.cf_warp_version }}
-                organization: ${{ secrets.cf_org_name }}
+                organization: dyallab
                 auth_client_id: ${{ secrets.cf_auth_client_id }}
                 auth_client_secret: ${{ secrets.cf_auth_client_secret }}  
 
