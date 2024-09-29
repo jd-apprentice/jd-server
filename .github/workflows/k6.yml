@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
   
 jobs:
-    infobae:
+    performance:
         name: Run K6 Local
         runs-on: ubuntu-latest
         steps:
@@ -23,4 +23,19 @@ jobs:
             with:
               path: |
                 performance/api-*.js
-          
+    gotify:
+        needs: [performance]
+        uses: ./.github/workflows/cloudflare-auth.yml
+        secrets:
+          cf_warp_version: ${{ secrets.CF_WARP_VERSION }}
+          cf_org_name: ${{ secrets.CF_ORG_NAME }}
+          cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
+          cf_auth_client_secret: ${{ secrets.CF_AUTH_CLIENT_SECRET }}
+          gotify_app_token: ${{ secrets.K6_GOTIFY_TOKEN }}
+        with:
+          runs-on: ubuntu-latest
+          name: "Cloudflare Auth"
+          gotify_server_url: "https://push.jonathan.com.ar"
+          gotify_title: "K6 Performance Test"
+          gotify_description: "Performance test passed"
+          gotify_priority: 1

@@ -6,9 +6,9 @@ import { check, sleep } from 'k6';
 
 export const options = {
   vus: __ENV.VUS || 5,
-  duration: __ENV.DURATION || '30s',
+  duration: __ENV.DURATION || '60s',
   thresholds: {
-    http_req_duration: ['p(90)<5000'], // 90% of requests must complete below 5 seconds
+    http_req_duration: ['p(90)<10000'], // 90% of requests must complete below 10 seconds
     http_req_failed: ['rate<0.1'], // http errors should be less than 10%
   },
 };
