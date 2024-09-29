@@ -30,4 +30,5 @@ for file in x*; do
 done
 
 rm backup-"$date"-"$SERVER_NAME".tar.gz x*
+notify 192.168.0.242 8588 token backup "created a backup" 1
 echo "🚀 Backup completed!"
