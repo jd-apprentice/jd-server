@@ -29,10 +29,6 @@ on:
           default: 1
           type: number
       secrets:
-        cf_warp_version:
-          required: true
-        cf_org_name:
-          required: true
         cf_auth_client_id:
           required: true
         cf_auth_client_secret:
