@@ -43,7 +43,7 @@ on:
 jobs:
     infobae:
         name: ${{ inputs.name }}
-        runs-on: $${{ inputs.runs-on }}
+        runs-on: ${{ inputs.runs-on }}
         steps:
           - uses: Boostport/setup-cloudflare-warp@v1
             with:
