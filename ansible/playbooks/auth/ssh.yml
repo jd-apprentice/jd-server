@@ -16,7 +16,8 @@
     - name: Copy SSH keys
       shell: "cat ~/.ssh/id_rsa.pub | ssh {{ ansible_user }}@{{ item }} 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'"
       with_items:
-        - pi.local
+        - node00.local
         - node01.local
         - node02.local
         - node03.local
+        - node04.local
