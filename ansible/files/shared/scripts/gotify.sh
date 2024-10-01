@@ -18,4 +18,4 @@ echo "Message: $message"
 echo "Priority: $priority"
 echo "Sending notification to Gotify server"
 
-curl "$server_url" -F "title=$title" -F "message=$message - At $date" -F "priority=$priority"
+curl "$server_url" -F "title=$title" -F "message=$message - at $date" -F "priority=$priority"

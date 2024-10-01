@@ -1,0 +1,12 @@
+## Gotify
+MAILTO="infra@jonathan.com.ar"
+0 3 * * 1 bash $HOME/scripts/reminder.sh >> $HOME/logs/reminder.log
+
+MAILTO="infra@jonathan.com.ar"
+0 19 * * 1-5 bash $HOME/scripts/notify.sh 192.168.0.242 8588 xxx Routine "It is time to walk!" 3 >> $HOME/logs/walk.log
+
+MAILTO="infra@jonathan.com.ar"
+0 21 * * * bash $HOME/scripts/notify.sh 192.168.0.242 8588 xxx Routine "OSS Class!" 3 >> $HOME/logs/oss.log
+
+MAILTO="infra@jonathan.com.ar"
+0 23 * * 1-5 bash $HOME/scripts/notify.sh 192.168.0.242 8588 xxx Routine "It is time to read a book!" 2 >> $HOME/logs/book.log
