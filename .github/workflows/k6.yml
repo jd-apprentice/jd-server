@@ -9,31 +9,32 @@ on:
     types:
       - completed
   schedule:
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
   workflow_dispatch:
-  
+
 jobs:
-    performance:
-        name: Run K6 Local
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - uses: grafana/setup-k6-action@v1
-          - uses: grafana/run-k6-action@v1
-            with:
-              path: |
-                performance/api-*.js
-    gotify:
-        needs: [performance]
-        uses: ./.github/workflows/cloudflare-auth.yml
-        secrets:
-          cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
-          cf_auth_client_secret: ${{ secrets.CF_AUTH_CLIENT_SECRET }}
-          gotify_app_token: ${{ secrets.K6_GOTIFY_TOKEN }}
+  performance:
+    name: Run K6 Local
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: grafana/setup-k6-action@v1
+      - uses: grafana/run-k6-action@v1
         with:
-          runs-on: ubuntu-latest
-          name: "Cloudflare Auth"
-          gotify_server_url: "https://push.jonathan.com.ar"
-          gotify_title: "K6 Performance Test"
-          gotify_description: "Performance test passed"
-          gotify_priority: 1
+          path: |
+            performance/api-*.js
+
+  gotify:
+    needs: [performance]
+    uses: ./.github/workflows/cloudflare-auth.yml
+    secrets:
+      cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
+      cf_auth_client_secret: ${{ secrets.CF_AUTH_CLIENT_SECRET }}
+      gotify_app_token: ${{ secrets.K6_GOTIFY_TOKEN }}
+    with:
+      runs-on: ubuntu-latest
+      name: "Cloudflare Auth"
+      gotify_server_url: "https://push.jonathan.com.ar"
+      gotify_title: "K6 Performance Test"
+      gotify_description: "Performance test passed"
+      gotify_priority: 1
