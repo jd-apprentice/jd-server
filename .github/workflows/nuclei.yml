@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   gotify:
-    needs: [performance]
+    needs: [nuclei-scan]
     uses: ./.github/workflows/cloudflare-auth.yml
     secrets:
       cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
