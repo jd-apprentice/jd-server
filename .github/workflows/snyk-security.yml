@@ -37,7 +37,7 @@ jobs:
           category: snyk-terraform
 
   gotify:
-    needs: [performance]
+    needs: [snyk]
     uses: ./.github/workflows/cloudflare-auth.yml
     secrets:
       cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
