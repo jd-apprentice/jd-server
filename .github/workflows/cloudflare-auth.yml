@@ -50,4 +50,4 @@ jobs:
           - name: Gotify Notification
             run: |
                 date="$(date '+%Y-%m-%d %H:%M:%S')"
-                curl "${{ inputs.gotify_server_url }}/message?token=${{ secrets.gotify_app_token }}" -F "title=${{ inputs.gotify_title }}" -F "message=${{ inputs.gotify_description }} - at $date" -F "priority=${{ inputs.gotify_priority }}"
+                curl -X POST "${{ inputs.gotify_server_url }}/message?token=${{ secrets.gotify_app_token }}" -F "title=${{ inputs.gotify_title }}" -F "message=${{ inputs.gotify_description }} - at $date" -F "priority=${{ inputs.gotify_priority }}"
