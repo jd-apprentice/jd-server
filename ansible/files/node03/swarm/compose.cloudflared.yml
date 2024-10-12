@@ -2,9 +2,11 @@ services:
 
   cloudflared:
     image: cloudflare/cloudflared:latest
-    command: tunnel --no-autoupdate run --token {{ cloudflare_tunnel_token }}
+    environment:
+      - CLOUDFLARE_TUNNEL_TOKEN
+    command: tunnel --no-autoupdate run --token $CLOUDFLARE_TUNNEL_TOKEN
     deploy:
-      replicas: 2
+      replicas: 3
       placement:
         constraints:
           - node.role == manager

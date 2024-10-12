@@ -26,16 +26,6 @@ env:
   NODE_CRONJOB_PATH: /var/spool/cron/crontabs/${{ secrets.USER }}
 
 jobs:
-  
-  delete:
-    runs-on: ${{ inputs.runs-on }}
-    if: contains(github.event.head_commit.message, 'delete') && !github.event_name == 'pull request'
-    steps:
-      - name: Delete service ${{ inputs.service }} from ${{ inputs.node-name }} server
-        run: |
-          echo "Deleting docker files from ${{ inputs.node-name }} server"
-          docker compose -f ${{ env.NODE_DOCKER_PATH }}/compose.yml stop ${{ inputs.service }}
-          docker system prune --all
 
   deploy:
     runs-on: ${{ inputs.runs-on }}
@@ -45,27 +35,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup docker
-        if: contains(github.event.head_commit.message, 'docker')
+        if: contains(github.event.head_commit.message, 'standalone')
         run: |
           echo "Copying docker files to ${{ inputs.node-name }} server"
-          cp -r ansible/files/${{ inputs.node-name }}/docker/* ${{ env.NODE_DOCKER_PATH }}
-          docker compose -f ${{ env.NODE_DOCKER_PATH }}/compose.yml up -d
-
-      - name: Setup cronjob
-        if: contains(github.event.head_commit.message, 'cronjob')
-        run: |
-          echo "Copying cronjob files to ${{ inputs.node-name }} server"
-          mv ansible/files/${{ inputs.node-name}}/jobs/cron ${{ secrets.USER }}
-          echo ${{ secrets.USERPASSWD }} | sudo -S cp ansible/files/${{ inputs.node-name }}/jobs/${{ secrets.USER }} ${{ env.NODE_CRONJOB_PATH }}
-
-      - name: Cleanup
-        run: |
-          echo "Cleanup files"
-          rm -rf jd-server/*
-          rm -rf ansible/files/${{ inputs.node-name }}/*
+          cp ansible/files/${{ inputs.node-name }}/docker/compose-standalone.yml ${{ env.NODE_DOCKER_PATH }}
+          docker compose -f ${{ env.NODE_DOCKER_PATH }}/compose-standalone.yml up -d
 
   telegram:
-    needs: [deploy, delete]
+    needs: [deploy]
     if: ${{ always() }}
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
     with:

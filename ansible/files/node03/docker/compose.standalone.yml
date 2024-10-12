@@ -1,20 +1,5 @@
 services:
 
-  dashdot:
-    image: mauricenino/dashdot
-    user: 1000:1000
-    restart: always
-    security_opt:
-      - seccomp:~/security/default.json
-      - no-new-privileges:true
-    ports:
-      - "3001:3001"
-    volumes:
-      - "/:/mnt/host:ro"
-    privileged: true
-    environment:
-      DASHDOT_ENABLE_CPU_TEMPS: 'true'
-
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     user: 1000:1000

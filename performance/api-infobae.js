@@ -8,7 +8,7 @@ export const options = {
   vus: __ENV.VUS || 5,
   duration: __ENV.DURATION || '60s',
   thresholds: {
-    http_req_duration: ['p(90)<10000'], // 90% of requests must complete below 10 seconds
+    http_req_duration: ['p(95)<5000'], // 90% of requests must complete below 5 seconds
     http_req_failed: ['rate<0.1'], // http errors should be less than 10%
   },
 };
@@ -20,8 +20,8 @@ export const options = {
  * @environment DURATION (default: 60s)
  * @description K6 performance test
  */
-export default function() {
- const url = __ENV.TARGET_URL || "https://noticias.jonathan.com.ar/api/infobae";
+export default function () {
+  const url = __ENV.TARGET_URL || "https://noticias.jonathan.com.ar/api/infobae";
 
   let response = http.get(url);
   check(response, {
