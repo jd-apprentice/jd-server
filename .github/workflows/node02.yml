@@ -27,7 +27,7 @@ jobs:
     uses: ./.github/workflows/node-operation.yml
     with:
       node-name: node02
-      runs-on: self-hosted
+      runs-on: node02
     secrets:
       telegram_token: ${{ secrets.TELEGRAM_TOKEN }}
       telegram_to: ${{ secrets.TELEGRAM_TO }}
