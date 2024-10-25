@@ -36,7 +36,7 @@ jobs:
       - name: Setup docker
         run: |
           echo "Copying docker files to ${{ inputs.node-name }} server"
-          cp ansible/files/${{ inputs.node-name }}/docker/compose-standalone.yml ${{ env.NODE_DOCKER_PATH }}
+          cp ansible/files/${{ inputs.node-name }}/docker/compose.standalone.yml ${{ env.NODE_DOCKER_PATH }}
           docker compose -f ${{ env.NODE_DOCKER_PATH }}/compose-standalone.yml up -d
 
   telegram:
