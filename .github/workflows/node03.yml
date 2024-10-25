@@ -17,6 +17,7 @@ env:
 
 jobs:
   operation:
+    if: github.repository == 'jd-apprentice/jd-server'
     uses: ./.github/workflows/node-operation.yml
     with:
       node-name: node03
