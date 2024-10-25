@@ -29,13 +29,12 @@ jobs:
 
   deploy:
     runs-on: ${{ inputs.runs-on }}
-    if: contains(github.event.head_commit.message, 'deploy') && !github.event_name == 'pull request'
+    if: github.repository == 'jd-apprentice/jd-server' && !github.event_name == 'pull request'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup docker
-        if: contains(github.event.head_commit.message, 'standalone')
         run: |
           echo "Copying docker files to ${{ inputs.node-name }} server"
           cp ansible/files/${{ inputs.node-name }}/docker/compose-standalone.yml ${{ env.NODE_DOCKER_PATH }}
@@ -43,7 +42,7 @@ jobs:
 
   telegram:
     needs: [deploy]
-    if: ${{ always() }}
+    if: github.repository == 'jd-apprentice/jd-server' && !github.event_name == 'pull request'
     uses: jd-apprentice/jd-workflows/.github/workflows/telegram.yml@main
     with:
       message: |
@@ -72,3 +71,19 @@ jobs:
     secrets:
       envTOKEN: ${{ secrets.telegram_token }}
       envTO: ${{ secrets.telegram_to }}
+
+  gotify:
+    needs: [telegram, deploy]
+    if: github.repository == 'jd-apprentice/jd-server' && !github.event_name == 'pull request'
+    uses: ./.github/workflows/cloudflare-auth.yml
+    secrets:
+      cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
+      cf_auth_client_secret: ${{ secrets.CF_AUTH_CLIENT_SECRET }}
+      gotify_app_token: ${{ secrets.NODE_OPERATION_GOTIFY_TOKEN }}
+    with:
+      runs-on: ubuntu-latest
+      name: "Cloudflare Auth"
+      gotify_server_url: "https://push.jonathan.com.ar"
+      gotify_title: "Homemade GitOps - ${{ inputs.node-name }}"
+      gotify_description: "${{ github.workflow }} on ${{ inputs.node-name }}"
+      gotify_priority: 5

@@ -1,9 +1,8 @@
-version: "3.8"
-
 services:
   dashdot:
     image: mauricenino/dashdot
     user: 1000:1000
+    hostname: ${HOSTNAME}
     security_opt:
       - seccomp:~/security/default.json
       - no-new-privileges:true
