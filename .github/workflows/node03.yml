@@ -26,3 +26,6 @@ jobs:
       telegram_token: ${{ secrets.TELEGRAM_TOKEN }}
       telegram_to: ${{ secrets.TELEGRAM_TO }}
       user: ${{ secrets.USER }}
+      cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
+      cf_auth_client_secret: ${{ secrets.CF_AUTH_CLIENT_SECRET }}
+      gotify_app_token: ${{ secrets.NODE_OPERATION_GOTIFY_TOKEN }}
