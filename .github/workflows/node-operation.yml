@@ -22,6 +22,12 @@ on:
         required: true
       user:
         required: true
+      cf_auth_client_id:
+        required: true
+      cf_auth_client_secret:
+        required: true
+      gotify_app_token:
+        required: true
 
 env:
   NODE_DOCKER_PATH: /home/${{ secrets.user }}/www
