@@ -25,3 +25,4 @@ jobs:
     secrets:
       telegram_token: ${{ secrets.TELEGRAM_TOKEN }}
       telegram_to: ${{ secrets.TELEGRAM_TO }}
+      user: ${{ secrets.USER }}

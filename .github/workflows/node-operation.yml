@@ -20,10 +20,12 @@ on:
         required: true
       telegram_to:
         required: true
+      user:
+        required: true
 
 env:
-  NODE_DOCKER_PATH: /home/${{ secrets.USER }}/www
-  NODE_CRONJOB_PATH: /var/spool/cron/crontabs/${{ secrets.USER }}
+  NODE_DOCKER_PATH: /home/${{ secrets.user }}/www
+  NODE_CRONJOB_PATH: /var/spool/cron/crontabs/${{ secrets.user }}
 
 jobs:
 
