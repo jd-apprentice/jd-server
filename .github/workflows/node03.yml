@@ -3,17 +3,10 @@ name: Node03
 on:
   workflow_dispatch:
   push:
-    branches: [node03/*]
+    branches: main
     paths:
       - "ansible/files/node03/**"
       - ".github/workflows/node03.yml"
-      - "terraform/homelab/*"
-  pull_request:
-    branches: [node03/*]
-    paths:
-      - "ansible/files/node03/**"
-      - ".github/workflows/node03.yml"
-      - "terraform/homelab/*"
 
 permissions:
   actions: write

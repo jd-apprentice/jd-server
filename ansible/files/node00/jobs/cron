@@ -1,7 +1,0 @@
-0 0 1 * * sh $HOME/scripts/zone.sh >> $HOME/logs/backup.log
-0 * * * * sh $HOME/scripts/alerts.sh >> $HOME/logs/alert.log
-
-# External
-
-*/10  * * * * curl https://do-discord-bot.onrender.com/
-*/10  * * * * curl https://omc.eventitos.com.ar/
