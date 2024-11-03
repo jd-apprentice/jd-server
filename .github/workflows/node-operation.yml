@@ -43,35 +43,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Dump environment context
-        run: |
-          # https://stackoverflow.com/a/75789640
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          to_envs() { jq -r "to_entries[] | \"\(.key)<<$EOF\n\(.value)\n$EOF\n\""; }
-          echo "$VARS_CONTEXT" | to_envs >> $GITHUB_ENV
-          echo "$SECRETS_CONTEXT" | to_envs >> $GITHUB_ENV
+        uses: oNaiPs/secrets-to-env-action@v1
+        with:
+          secrets: ${{ toJSON(secrets) }}
 
-          for env in $GITHUB_ENV; do
-            project_name=$(echo $env | cut -d'=' -f1)
-            echo "Creating .env file for $project_name"
-            echo "$env" >> ${{ env.NODE_DOCKER_PATH }}/sample/.env
-          done
+      - name: echo
+        run: |
+          echo "📝 Value of WAIFULAND_TOKEN: $WAIFULAND_TOKEN"
 
       - name: Setup docker standalone
         run: |
           echo "Copying docker files to ${{ inputs.node-name }} server"
           cp ansible/files/${{ inputs.node-name }}/docker/compose.standalone.yml ${{ env.NODE_DOCKER_PATH }}/compose.yml
           docker compose -f ${{ env.NODE_DOCKER_PATH }}/compose.yml up -d
-
-      - name: Setup docker swarm
-        run: |
-          echo "Copying docker files to ${{ inputs.node-name }} server"
-          cp ansible/files/${{ inputs.node-name }}/swarm/*.yml ${{ env.NODE_DOCKER_PATH }}/*.yml
-          for file in ${{ env.NODE_DOCKER_PATH }}/*.yml; do
-            file_name=$(cat $file | sed 's/compose\.//; s/\.yml//')
-            echo "Deploying $file_name"
-            # docker stack deploy -c $file $file_name
-          done
 
   telegram:
     needs: [deploy]
