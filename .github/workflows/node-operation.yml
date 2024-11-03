@@ -43,11 +43,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up environment variables
         uses: oNaiPs/secrets-to-env-action@v1
         with:
           secrets: ${{ toJSON(secrets) }}
 
-      - name: echo
+      - name: Print values
         run: |
           echo "📝 Value of WAIFULAND_TOKEN: $WAIFULAND_TOKEN"
 
