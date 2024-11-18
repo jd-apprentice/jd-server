@@ -30,6 +30,8 @@ On the worker node:
 sudo apt install nfs-common
 sudo mkdir -p /mnt/swarm
 sudo mount <manager_ip>:/var/nfs/swarm /mnt/swarm
+sudo systemctl enable --now nfs-server
+sudo exportfs -arv
 ```
 
 ## Deploy a stack
