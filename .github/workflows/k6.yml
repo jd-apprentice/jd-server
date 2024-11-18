@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  performance:
+  infobae:
     name: Run K6 Local
     runs-on: ubuntu-latest
     steps:
@@ -22,10 +22,22 @@ jobs:
       - uses: grafana/run-k6-action@v1
         with:
           path: |
-            performance/api-*.js
+            performance/api-infobae.js
+  
+  waifuland:
+    name: Run K6 Local
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: grafana/setup-k6-action@v1
+      - uses: grafana/run-k6-action@v1
+        with:
+          path: |
+            performance/api-waifuland.js
 
   gotify:
-    needs: [performance]
+    needs: [infobae, waifuland]
+    if: always()
     uses: ./.github/workflows/cloudflare-auth.yml
     secrets:
       cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
