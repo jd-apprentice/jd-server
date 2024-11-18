@@ -1,19 +1,36 @@
 services:
   swingmusic:
     image: ghcr.io/swingmx/swingmusic
-    volumes:
-      - ./swing/music:/music
-      - ./swing/config:/config
     ports:
       - "1970:1970"
     networks:
       - swing
     deploy:
-      replicas: 2
+      replicas: 3
       placement:
          constraints:
            - node.role == manager
+         max_replicas_per_node: 1
+    volumes:
+      - type: volume
+        source: shared
+        target: /var/nfs/swarm
+        volume:
+          nocopy: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 networks:
   swing:
     driver: overlay
+
+volumes:
+  shared:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=node03.local,nolock,soft,rw
+      device: ":/var/nfs/swarm"

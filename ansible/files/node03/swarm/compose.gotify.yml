@@ -1,0 +1,23 @@
+services:
+  gotify:
+    image: gotify/server-arm64
+    ports:
+      - 8588:80
+    environment:
+      - GOTIFY_DEFAULTUSER_PASS=jdjd11
+    volumes:
+      - "./gotify_data:/app/data"
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
+        max_replicas_per_node: 1
+    networks:
+      - gotify
+
+networks:
+  gotify:
+    driver: overlay
