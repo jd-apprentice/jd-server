@@ -8,7 +8,7 @@ export const options = {
   vus: __ENV.VUS || 5,
   duration: __ENV.DURATION || '60s',
   thresholds: {
-    http_req_duration: ['p(95)<5000'], // 90% of requests must complete below 5 seconds
+    http_req_duration: ['p(99)<3000'], // 99% of requests must complete below 3 seconds
     http_req_failed: ['rate<0.1'], // http errors should be less than 10%
   },
 };
