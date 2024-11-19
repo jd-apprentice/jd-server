@@ -120,12 +120,23 @@ And grab the IP, then obtain the token
 
 ```shell
 sudo cat /var/lib/rancher/k3s/server/node-token
-....
+```
+
+To enable the server to be HA we need to init the server as a cluster
+
+```shell
+sudo nano /etc/systemd/system/k3s.service
+## Add the following
+ExecStart=/usr/local/bin/k3s server --cluster-init
+sudo systemctl daemon-reload
+sudo systemctl restart k3s
 ```
 
 ```bash
+## In the worker node
 curl -sfL https://get.k3s.io | K3S_URL=https://192.168.0.242:6443 K3S_TOKEN=.... sh -
-reboot
+## In the master node
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.30.4+k3s1 K3S_TOKEN="..." sh -s server --server https://<MASTER_IP>:6443
 ```
 
 To have separate deployments we can do something like this
@@ -246,4 +257,6 @@ Here my master (node03) is not in charge of any deployment.
 
 ### Links
 
--  https://k8s-docs.netlify.app/en/docs/reference/kubectl/cheatsheet/
+- https://rpi4cluster.com/
+- https://k3s.rocks/install-setup/
+- https://k8s-docs.netlify.app/en/docs/reference/kubectl/cheatsheet/
