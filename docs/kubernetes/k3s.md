@@ -243,6 +243,17 @@ node02   Ready                      worker                 3d18h   v1.30.4+k3s1 
 node03   Ready,SchedulingDisabled   control-plane,master   3d22h   v1.30.4+k3s1   192.168.0.242   <none>        Debian GNU/Linux 12 (bookworm)   6.6.31+rpt-rpi-v8   containerd://1.7.20-k3s1
 ```
 
+## Naming files with numbers
+
+To respect the order creation of the resources we can use numbers in the names
+
+```shell
+010_infobae-api-worker.yaml
+020_infobae-api-master.yaml
+```
+
+This way we can control the order of the resources creation
+
 ### Do not use the control plane for deployments
 
 ```shell
