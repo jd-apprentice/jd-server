@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gotify
+  namespace: gotify
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gotify
+  template:
+    metadata:
+      labels:
+        app: gotify
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - node03
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      volumes:
+      - name: gotify-data
+        persistentVolumeClaim:
+          claimName: gotify-pvc
+      containers:
+      - name: gotify
+        image: gotify/server-arm64
+        volumeMounts:
+        - mountPath: /app/data
+          name: gotify-data
+        env:
+        - name: GOTIFY_DEFAULTUSER_PASS
+          value: 1234

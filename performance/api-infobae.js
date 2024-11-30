@@ -21,7 +21,7 @@ export const options = {
  * @description K6 performance test
  */
 export default function () {
-  const url = __ENV.TARGET_URL || "https://noticias.jonathan.com.ar/api/infobae";
+  const url = __ENV.TARGET_URL || "https://noticias.jonathan.com.ar/api/infobae/";
 
   let response = http.get(url);
   check(response, {

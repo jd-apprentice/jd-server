@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gotify-service
+  namespace: gotify
+spec:
+  selector:
+    app: gotify
+  ports:
+    - protocol: TCP
+      port: 10000
+      targetPort: 80
+  type: ClusterIP

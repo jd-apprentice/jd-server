@@ -14,7 +14,7 @@ on:
 
 jobs:
   infobae:
-    name: Run K6 Local
+    name: Run K6 Local - Infobae
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,7 +25,7 @@ jobs:
             performance/api-infobae.js
   
   waifuland:
-    name: Run K6 Local
+    name: Run K6 Local - Waifuland
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,9 +35,8 @@ jobs:
           path: |
             performance/api-waifuland.js
 
-  gotify:
-    needs: [infobae, waifuland]
-    if: always()
+  gotify_infobae:
+    needs: [infobae]
     uses: ./.github/workflows/cloudflare-auth.yml
     secrets:
       cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
@@ -47,6 +46,21 @@ jobs:
       runs-on: ubuntu-latest
       name: "Cloudflare Auth"
       gotify_server_url: "https://push.jonathan.com.ar"
-      gotify_title: "K6 Performance Test"
-      gotify_description: "Performance test passed"
+      gotify_title: "K6 Performance Test - Infobae"
+      gotify_description: "${{ github.workflow }} on Infobae"
+      gotify_priority: 1
+  
+  gotify_waifuland:
+    needs: [waifuland]
+    uses: ./.github/workflows/cloudflare-auth.yml
+    secrets:
+      cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
+      cf_auth_client_secret: ${{ secrets.CF_AUTH_CLIENT_SECRET }}
+      gotify_app_token: ${{ secrets.K6_GOTIFY_TOKEN }}
+    with:
+      runs-on: ubuntu-latest
+      name: "Cloudflare Auth"
+      gotify_server_url: "https://push.jonathan.com.ar"
+      gotify_title: "K6 Performance Test - Waifuland"
+      gotify_description: "${{ github.workflow }} on Waifuland"
       gotify_priority: 1
