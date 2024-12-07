@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homepage
+  namespace: homepage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homepage
+  template:
+    metadata:
+      labels:
+        app: homepage
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - node03
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      volumes:
+      - name: homepage-data
+        persistentVolumeClaim:
+          claimName: homepage-pvc
+      containers:
+      - name: homepage
+        image: ghcr.io/gethomepage/homepage:latest
+        volumeMounts:
+        - mountPath: /app/config
+          name: homepage-data
+          

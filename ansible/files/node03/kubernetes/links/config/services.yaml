@@ -1,0 +1,46 @@
+- ExternalApps:
+    - Pihole:
+        icon: si-pihole
+        href: https://dns.jonathan.com.ar
+        ping: dns.jonathan.com.ar
+    - Dashboard:
+        icon: si-kubernetes
+        href: https://kubernetes.jonathan.com.ar
+        ping: kubernetes.jonathan.com.ar
+    - Gotify:
+        icon: si-goland
+        href: https://push.jonathan.com.ar
+        ping: push.jonathan.com.ar
+
+- CustomApps:
+    - Portfolio:
+        icon: si-raspberrypi
+        href: https://jonathan.com.ar
+        ping: jonathan.com.ar
+    - Waifuland:
+        icon: si-myanimelist
+        href: https://waifuland.jonathan.com.ar/api
+        ping: waifuland.jonathan.com.ar
+    - Infobae:
+        icon: si-newyorktimes
+        href: https://noticias.jonathan.com.ar/api/infobae
+        ping: noticias.jonathan.com.ar
+
+- Cloud:
+    - Blog:
+        icon: si-hashnode
+        href: https://blog.jonathan.com.ar
+        ping: blog.jonathan.com.ar
+    - Pentest:
+        icon: si-hackaday
+        href: https://pentest.jonathan.com.ar
+        ping: pentest.jonathan.com.ar
+
+- Widgets:
+    - Kuma:
+        icon: si-uptimekuma
+        href: https://status.jonathan.com.ar
+        widget:
+          type: uptimekuma
+          url: https://status.jonathan.com.ar
+          slug: all
