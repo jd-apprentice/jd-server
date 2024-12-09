@@ -79,18 +79,4 @@ jobs:
     secrets:
       envTOKEN: ${{ secrets.telegram_token }}
       envTO: ${{ secrets.telegram_to }}
-
-  gotify:
-    needs: [telegram, deploy]
-    uses: ./.github/workflows/cloudflare-auth.yml
-    secrets:
-      cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
-      cf_auth_client_secret: ${{ secrets.CF_AUTH_CLIENT_SECRET }}
-      gotify_app_token: ${{ secrets.NODE_OPERATION_GOTIFY_TOKEN }}
-    with:
-      runs-on: ubuntu-latest
-      name: "Cloudflare Auth"
-      gotify_server_url: "https://push.jonathan.com.ar"
-      gotify_title: "Homemade GitOps - ${{ inputs.node-name }}"
-      gotify_description: "${{ github.workflow }} on ${{ inputs.node-name }}"
-      gotify_priority: 5
+      

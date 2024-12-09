@@ -5,8 +5,8 @@ on:
     workflows: ["Node Operation"]
     types:
       - completed
-  schedule:
-    - cron: "0 0 * * *"
+  # schedule:
+  #   - cron: "0 0 * * *"
   workflow_dispatch:
 
 permissions:
@@ -35,19 +35,3 @@ jobs:
         with:
           sarif_file: snyk.sarif
           category: snyk-terraform
-
-  gotify:
-    needs: [snyk]
-    if: always()
-    uses: ./.github/workflows/cloudflare-auth.yml
-    secrets:
-      cf_auth_client_id: ${{ secrets.CF_AUTH_CLIENT_ID }}
-      cf_auth_client_secret: ${{ secrets.CF_AUTH_CLIENT_SECRET }}
-      gotify_app_token: ${{ secrets.SNYK_GOTIFY_TOKEN }}
-    with:
-      runs-on: ubuntu-latest
-      name: "Cloudflare Auth"
-      gotify_server_url: "https://push.jonathan.com.ar"
-      gotify_title: "Snyk Vulnerabilities Scanner"
-      gotify_description: "Security test passed"
-      gotify_priority: 1
