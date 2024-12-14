@@ -20,7 +20,6 @@ fi
 
 REMOTE_DEST="${USER}@${BASE_NAME}${DOMAIN}:${REMOTE_PATH}"
 
-
 if [[ "$MODE" == "backup" ]]; then
     rsync -aAXHvr --verbose --filter="merge $HOME/.config/rsyncignore" -e ssh "$LOCAL_PATH" "$REMOTE_DEST"
     rsync -aAXHvr --verbose --filter="merge $HOME/.config/rsyncignore" "$LOCAL_PATH" "$LOCAL_DEST"
