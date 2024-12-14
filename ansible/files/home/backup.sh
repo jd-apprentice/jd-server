@@ -8,6 +8,7 @@ MODE=${1:-backup}
 USER=$(whoami)
 REMOTE_PATH="$HOME/arch"
 LOCAL_PATH="$HOME/"
+LOCAL_DEST="/run/media/dyallo/Backup/Arch"
 
 if [[ "$MODE" == "restore" ]]; then
     REMOTE_DEST="${USER}@${BASE_NAME}${DOMAIN}:${REMOTE_PATH}"
@@ -22,6 +23,7 @@ REMOTE_DEST="${USER}@${BASE_NAME}${DOMAIN}:${REMOTE_PATH}"
 
 if [[ "$MODE" == "backup" ]]; then
     rsync -aAXHvr --verbose --filter="merge $HOME/.config/rsyncignore" -e ssh "$LOCAL_PATH" "$REMOTE_DEST"
+    rsync -aAXHvr --verbose --filter="merge $HOME/.config/rsyncignore" "$LOCAL_PATH" "$LOCAL_DEST"
 fi
 
 if [ ! $? -eq 0 ]; then
