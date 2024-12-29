@@ -1,0 +1,7 @@
+0 19 * * 1-5 bash $HOME/scripts/notify.sh 192.168.88.251 8588 ... Routine "It is time to walk!" 3 >> $HOME/logs/walk.log
+0 21 * * * bash $HOME/scripts/notify.sh 192.168.88.251 8588 ... Routine "Study Time!" 3 >> $HOME/logs/oss.log
+0 23 * * 1-5 bash $HOME/scripts/notify.sh 192.168.88.251 8588 ... Routine "It is time to read a book!" 2 >> $HOME/logs/book.log
+
+## Backup
+0 3 * * 1 bash $HOME/scripts/backup.sh $HOME/www/* >> $HOME/logs/backup.log
+0 1 * * 5-6 bash $HOME/scripts/reminder.sh >> $HOME/logs/reminger.log

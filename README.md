@@ -2,6 +2,8 @@
 
 ![docs](docs/homelab.png)
 
+![networking](docs/networking.png)
+
 Need help building your homelab? Find me [here](https://jonathan.com.ar)
 
 <img alt="gitleaks badge" src="https://img.shields.io/badge/protected%20by-gitleaks-blue">
