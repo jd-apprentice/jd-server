@@ -62,9 +62,9 @@ variable "managers" {
 }
 
 resource "proxmox_lxc" "workers" {
+  for_each     = var.workers
   arch         = var.base.arch
   clone        = var.base.worker_id
-  for_each     = var.workers
   memory       = var.base.worker_ram
   cores        = var.base.cores
   swap         = var.base.worker_swap
@@ -88,9 +88,9 @@ resource "proxmox_lxc" "workers" {
 }
 
 resource "proxmox_lxc" "managers" {
+  for_each     = var.managers
   arch         = var.base.arch
   clone        = var.base.manager_id
-  for_each     = var.managers
   cores        = var.base.cores
   memory       = var.base.manager_ram
   swap         = var.base.manager_swap
