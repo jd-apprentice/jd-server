@@ -35,9 +35,9 @@ services:
       - USER_GID=1000
       - GITEA__database__DB_TYPE=postgres
       - GITEA__database__HOST=db:5432
-      - GITEA__database__NAME=
-      - GITEA__database__USER=
-      - GITEA__database__PASSWD=
+      - GITEA__database__NAME=${GITEA_DB_NAME}
+      - GITEA__database__USER=${GITEA_DB_USER}
+      - GITEA__database__PASSWD=${GITEA_DB_PASSWD}
       - GITEA__server__ROOT_URL=https://gitea.local.jonathan.com.ar
     restart: always
     networks:
@@ -56,9 +56,9 @@ services:
     image: postgres:14
     restart: always
     environment:
-      - POSTGRES_USER=
-      - POSTGRES_PASSWORD=
-      - POSTGRES_DB=
+      - POSTGRES_USER=${GITEA_DB_USER}
+      - POSTGRES_PASSWORD=${GITEA_DB_PASSWD}
+      - POSTGRES_DB=${GITEA_DB_NAME}
     networks:
       - gitea
     volumes:
@@ -89,9 +89,9 @@ services:
       - /var/log:/host/var/log:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      - NETDATA_CLAIM_TOKEN=
-      - NETDATA_CLAIM_URL=
-      - NETDATA_CLAIM_ROOMS=
+      - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
+      - NETDATA_CLAIM_URL=${NETDATA_CLAIM_URL}
+      - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS}
 
   uptime-kuma:
     image: louislam/uptime-kuma:1
@@ -121,7 +121,7 @@ services:
     ports:
       - 8588:80
     environment:
-      - GOTIFY_DEFAULTUSER_PASS=
+      - GOTIFY_DEFAULTUSER_PASS=${GOTIFY_DEFAULTUSER_PASS}
     volumes:
       - /volumes/gotify_data:/app/data:rw
 
