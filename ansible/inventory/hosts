@@ -24,3 +24,26 @@ ingress.local
 
 [ingress:vars]
 ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[vms:children]
+workers
+managers
+
+[workers]
+192.168.88.231
+192.168.88.232
+192.168.88.233
+192.168.88.234
+192.168.88.235
+192.168.88.236
+
+[workers:vars]
+ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[managers]
+192.168.88.221
+192.168.88.222
+192.168.88.223
+
+[managers:vars]
+ansible_ssh_private_key_file=~/.ssh/id_rsa

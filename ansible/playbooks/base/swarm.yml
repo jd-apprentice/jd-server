@@ -1,0 +1,26 @@
+---
+- name: join swarm
+  hosts: managers
+  become: yes
+  user: root
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  
+  vars_prompt:
+    - name: "token"
+      prompt: "Enter swarm token"
+      private: yes
+
+    - name: "machine"
+      prompt: "Enter machine name"
+      private: no
+      default: "192.168.88.221:2377"
+
+  tasks:
+    - name: Join workers
+      become: yes
+      shell: docker swarm join --token {{ token }} {{ machine }}
+
+    - name: Join managers
+      become: yes
+      shell: docker swarm join --token {{ token }} {{ machine }}

@@ -1,7 +1,10 @@
 ---
 - name: install docker
-  hosts: all
+  hosts: vms
   become: yes
+  user: root
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
 
   tasks:
     - name: Run apt-get update

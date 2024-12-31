@@ -1,5 +1,6 @@
 environment ?= prod
 action ?= init
+module ?= base
 
 prepare: scafolding
 
@@ -8,7 +9,7 @@ script:
 	./ansible/files/shared/scripts/$(script).sh
 
 playbook:
-	ansible-playbook -i ansible/inventory/hosts ansible/playbooks/$(playbook).yml
+	ansible-playbook -i ansible/inventory/hosts ansible/playbooks/$(module)/$(playbook).yml
 
 scafolding:
 	$(MAKE) playbook playbook=scafolding
