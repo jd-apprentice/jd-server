@@ -15,4 +15,10 @@ scafolding:
 	$(MAKE) playbook playbook=scafolding
 
 action:
-	cd terraform && terraform $(action) -var-file=config/$(environment).tfvars
+	if [ "$(action)" = "apply" ]; then \
+		cd terraform && terraform apply -var-file=config/$(environment).tfvars --auto-approve; \
+	else \
+		cd terraform && terraform $(action) -var-file=config/$(environment).tfvars; \
+	fi
+
+
