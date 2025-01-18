@@ -1,0 +1,22 @@
+# Static table lookup for hostnames.
+# See hosts(5) for details.
+
+## Trabajo
+
+192.168.180.4 desa-provincia
+192.168.181.101 test-provincia
+192.168.183.101 beta-provincia
+192.168.182.101 prod-provincia
+192.168.172.101 migra-provincia
+10.1.1.177 centos-devtools
+10.1.1.129 centos-2
+10.1.1.116 centos-1
+10.1.1.17 dev.oracle.artprov.com.ar
+10.1.1.68 wazuh-provincia
+
+## Server
+
+192.168.60.4 storage.local
+192.168.88.250 ingress.local
+192.168.88.251 node03.local
+192.168.88.252 proxmox.local
