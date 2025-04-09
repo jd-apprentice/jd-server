@@ -1,0 +1,14 @@
+[Unit]
+Description=Playit Agent
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/agent
+ExecStart=/root/agent/playit-linux-amd64_old
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
