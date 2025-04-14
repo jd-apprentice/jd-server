@@ -6,7 +6,7 @@ After=network.target
 User=root
 Group=root
 WorkingDirectory=/root/server
-ExecStart=/usr/bin/java -Xmx4096M -Xms2048M -jar server.jar nogui
+ExecStart=/usr/bin/java -Xmx2048M -Xms1024M -jar server.jar nogui
 Restart=on-failure
 
 [Install]
