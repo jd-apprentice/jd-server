@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  teamspeak:
+    image: mbentley/teamspeak
+    container_name: teamspeak
+    restart: always
+    environment:
+      - PUID=503
+      - PGID=503
+      - TS3SERVER_GDPR_SAVE=false
+      - TS3SERVER_LICENSE=accept
+    ports:
+      - "9987:9987/udp"
+      - "30033:30033"
+      - "10011:10011"
+      - "41144:41144"
+    volumes:
+      - ./data/teamspeak:/data
