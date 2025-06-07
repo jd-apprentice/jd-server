@@ -16,9 +16,9 @@ scafolding:
 
 action:
 	if [ "$(action)" = "apply" ]; then \
-		cd terraform && terraform apply -var-file=config/$(environment).tfvars --auto-approve; \
+		cd terraform && terraform apply -var-file=config/$(module).tfvars --auto-approve; \
 	else \
-		cd terraform && terraform $(action) -var-file=config/$(environment).tfvars; \
+		cd terraform && terraform $(action) -var-file=config/$(module).tfvars; \
 	fi
 
 
