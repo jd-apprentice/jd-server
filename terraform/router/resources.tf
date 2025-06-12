@@ -102,3 +102,10 @@ resource "routeros_dns_record" "automation" {
   type    = "CNAME"
   comment = var.ROS_COMMENT_DEFAULT
 }
+
+resource "routeros_dns_record" "dashboard-ingress" {
+  name    = "dashboard-ingress.${var.ROS_BASE_DOMAIN}"
+  cname   = var.ROS_BASE_DOMAIN
+  type    = "CNAME"
+  comment = var.ROS_COMMENT_DEFAULT
+}
