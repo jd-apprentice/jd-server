@@ -15,6 +15,7 @@ locals {
     "push",
     "status",
     "automation",
+    "zabbix",
     "dashboard-ingress"
   ]
 }
