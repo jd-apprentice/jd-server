@@ -12,7 +12,6 @@ locals {
     "lldap",
     "portainer",
     "proxmox",
-    "push",
     "status",
     "automation",
     "zabbix",
