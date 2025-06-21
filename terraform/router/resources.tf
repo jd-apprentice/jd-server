@@ -1,7 +1,10 @@
 locals {
   ros_subdomains = [
+    "auth",
+    "automation",
     "check",
     "crypto",
+    "dashboard-ingress",
     "docs",
     "gitea",
     "grafana",
@@ -12,10 +15,11 @@ locals {
     "lldap",
     "portainer",
     "proxmox",
+    "retropie",
     "status",
-    "automation",
+    "switch",
     "zabbix",
-    "dashboard-ingress"
+    "zoraxy"
   ]
 }
 
