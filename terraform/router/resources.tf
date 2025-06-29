@@ -2,6 +2,7 @@ locals {
   ros_subdomains = [
     "auth",
     "automation",
+    "argo",
     "check",
     "crypto",
     "dashboard-ingress",
