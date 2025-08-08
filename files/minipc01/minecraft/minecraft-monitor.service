@@ -1,0 +1,13 @@
+[Unit]
+Description=Monitor de jugadores para servidor de Minecraft
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/mainhost_deploy/monitor
+ExecStart=python3 monitor.py
+Restart=always
+User=mainhost_deploy
+
+[Install]
+WantedBy=multi-user.target
