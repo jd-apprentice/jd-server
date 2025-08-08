@@ -1,0 +1,13 @@
+[Unit]
+Description=Monitor de jugadores para servidor de Veloren
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/veloren-monitor
+ExecStart=python3 monitor.py
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
