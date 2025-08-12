@@ -1,17 +1,18 @@
-# MiniPC #2
+# MiniPC #3
 
 ## Specs
 
-- CPU: Ryzen 3 3200U
-- RAM: 32GB LPDDR4
-- Storage: 256GB SSD
+- CPU: I7-6700T
+- RAM: 16GB LPDDR4
+- Storage: 256GB SSD + 500GB HDD
+- GPU: Intel HD Graphics 530
 - OS: Proxmox VE 8.3.0
 
 ### Networking
 
 #### IP Address:
 
-192.168.88.20/24
+192.168.88.X/24
 
 #### Gateway:
 
@@ -23,5 +24,4 @@
 
 #### Ethernet
 
-Port: 4 via switch
-Switch position: 2
+Position: 3
