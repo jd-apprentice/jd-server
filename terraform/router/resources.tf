@@ -15,12 +15,15 @@ locals {
     "links",
     "lldap",
     "portainer",
+    "pdf",
     "proxmox",
+    "pbs",
     "retropie",
     "status",
     "switch",
+    "owncloud",
     "zabbix",
-    "zoraxy"
+    "zoraxy",
   ]
 }
 
