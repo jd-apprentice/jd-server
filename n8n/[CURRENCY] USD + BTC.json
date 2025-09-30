@@ -1,0 +1,196 @@
+{
+  "name": "[CURRENCY] USD + BTC",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -160,
+        0
+      ],
+      "id": "74b048ee-2da1-48e5-942c-fce697e51fa9",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "=USD OFICIAL 💵 - AR$ {{ $json.usd.oficial }}\nUSD BLUE 💵 - AR$ {{ $json.usd.blue }}\nBITCOIN 🟡 - $ {{ $json.btc.value }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        800,
+        0
+      ],
+      "id": "498531c8-0eac-4fe9-9384-11233d363f35",
+      "name": "Discord",
+      "webhookId": "...",
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "...",
+          "name": "Dyallo Notes"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        368,
+        0
+      ],
+      "id": "1f357794-15ee-4119-b7ba-fa6b41f50fd5",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        64,
+        80
+      ],
+      "id": "ba9b1770-73a0-407e-a6c1-605e43a6e433",
+      "name": "BTC"
+    },
+    {
+      "parameters": {
+        "url": "https://api.bluelytics.com.ar/v2/latest",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        64,
+        -64
+      ],
+      "id": "1a2c2a9d-3524-41a6-977c-8d10da4c6867",
+      "name": "USD"
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputs = $input.all();\n\nconst usdData = inputs.find(i => i.json.oficial)?.json;\nconst btcData = inputs.find(i => i.json.bitcoin)?.json;\n\nreturn {\n  usd: {\n    oficial: usdData?.oficial?.value_avg ?? null,\n    blue: usdData?.blue?.value_avg ?? null,\n  },\n  btc: {\n    value: btcData?.bitcoin?.usd ?? null\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        0
+      ],
+      "id": "4aabfe96-39fa-4160-b0c6-fdc2d772f1a3",
+      "name": "Prepare Output"
+    },
+    {
+      "parameters": {
+        "content": "## Explanation\n\nThe workflow obtains values from USD/ARG and USD/BTC\n\nAnd sends it to a discord channel.",
+        "height": 208
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -304,
+        -256
+      ],
+      "typeVersion": 1,
+      "id": "5fb18f1f-5347-4990-b810-2267ec1a2041",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "USD",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "BTC",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Prepare Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BTC": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "USD": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord": {
+      "main": [
+        []
+      ]
+    },
+    "Prepare Output": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "2689879e-c483-4dd6-b3a4-733fe4f90f5c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0bba35cd0d4685aab4d38977cbef2d6da3b6f54572db1b58f4732ef977a86a96"
+  },
+  "id": "48Un2j02AWtyL1rU",
+  "tags": [
+    {
+      "name": "news",
+      "id": "VfXKNmCS2o4607EY",
+      "createdAt": "2025-09-29T22:49:26.804Z",
+      "updatedAt": "2025-09-29T22:49:26.804Z"
+    }
+  ]
+}
